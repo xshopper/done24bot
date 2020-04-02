@@ -42,8 +42,11 @@ const ig = {
             await ig.bot.navigateToExampleProfile(ig.parameters.hashtag);
 
             await ig.bot.openRecentPostOneByOne(ig.parameters.nr_of_likes, async (col, item) => {
+		var user = await ig.bot.getUsernameFromPost();
                 await ig.bot.openComments();
-                await ig.bot.pastComment(ig.parameters.message); // Please replace custome message here !
+                await ig.bot.pastComment(ig.parameters.message);
+		await ig.utils.log({ "comment": ig.parameters.message, "instagram": ig.bot.username , "target_instagram" : user })
+
                 await ig.bot.goBack();
             });
             return;
