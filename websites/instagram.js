@@ -72,7 +72,7 @@ const ig = {
     profileFollowersNr: '//span/following-sibling::text()[contains(.,"followers")]/../span',
     profileFollowingNr: '//span/following-sibling::text()[contains(.,"following")]/../span',
     profileUsername: '//nav//header//h1',
-    usernameFromPost: '//*[@id="react-root"]/section/main/div/div/article/header/div[2]/div[1]/div[1]/h2/a',
+    usernameFromPost: '//*[@id="react-root"]//a[@href=concat("/" , text(), "/")]',
     isPrivate: '//*[contains(text(),"This Account is Private")]',
     notAvailableText: '//h2[contains(text(),"Sorry, this page isn\'t available.")]',
     videoControl: '//div[@aria-label="Control"]',
@@ -777,10 +777,11 @@ const ig = {
         const username = document.evaluate(selector.usernameFromPost, document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
         try {
           for (let i = 0, length = username.snapshotLength; i < length; ++i) {
-            var elem = username.snapshotItem(i).href
-            elem = elem.match(/(?:(?:http|https):\/\/)?(?:www.)?(?:ig.com|instagr.am)\/([A-Za-z0-9-_]+)/im)
-	    resolve(elem.length > 1 ? elem[1] : null);
+            var elem = username.snapshotItem(i).text()
+            // elem = elem.match(/(?:(?:http|https):\/\/)?(?:www.)?(?:ig.com|instagr.am)\/([A-Za-z0-9-_]+)/im)
+	    resolve(elem);
           }
+	    resolve(null);
         } catch (e) {
 	  console.log('getUsernameFromPost', e);
 	  reject(e);
