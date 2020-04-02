@@ -680,8 +680,12 @@ const ig = {
 
       await ig.utils.sleep(2000);
 
+	if(userhandle.substr(0,1) === '#') {
+		userhandle = 'tags/' + userhandle.substr(1)
+	}
+
       await ig.page.evaluate((element) => {
-        const SearchResultEle = document.evaluate(element.correctSearchResult, document, null, XPathResult.ANY_TYPE, null);
+        const SearchResultEle = document.evaluate('//li//a[contains(@href,"/'+userhandle+'/")]', document, null, XPathResult.ANY_TYPE, null);
         const SearchResult = SearchResultEle.iterateNext();
         SearchResult && SearchResult.click();
       }, ig.elements);
