@@ -684,11 +684,11 @@ const ig = {
 		userhandle = 'tags/' + userhandle.substr(1)
 	}
 
-      await ig.page.evaluate((element) => {
+      await ig.page.evaluate((element,userhandle) => {
         const SearchResultEle = document.evaluate('//li//a[contains(@href,"/'+userhandle+'/")]', document, null, XPathResult.ANY_TYPE, null);
         const SearchResult = SearchResultEle.iterateNext();
         SearchResult && SearchResult.click();
-      }, ig.elements);
+      }, ig.elements,userhandle);
 
       return await ig.waitProfilePage()
     } catch (e) {
