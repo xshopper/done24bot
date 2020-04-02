@@ -96,7 +96,11 @@ process: async () => {
 
     ig.parameters['customer']['phone'] = order.shipping_address.phone.replace('+61','0');
     ig.parameters['customer']['city'] = picked_city.replace(/\n/g,' ');
-    ig.parameters['customer']['state'] = order.shipping_address.province_code.replace(/\n/g,' ');
+    try {
+    	ig.parameters['customer']['state'] = order.shipping_address.province_code.replace(/\n/g,' ');
+    } catch(e) {
+	ig.parameters['customer']['state'] = '';
+    }
     ig.parameters['customer']['postcode'] = picked_zip;
     ig.parameters['customer']['country'] = picked_country;
     ig.parameters['giftcard'] = ig.parameters.giftcard + " Order:" + order.order_number,
