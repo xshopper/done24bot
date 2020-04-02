@@ -610,7 +610,7 @@ const ig = {
   pastComment: async (comment) => {
     console.log('pastComment');
     try {
-      await ig.page.type(ig.elements.postCommentInput, comment, { delay : 50 });
+      await ig.page.type(ig.elements.postCommentInput, comment, { delay : 0 });
       await ig.page.waitFor(1000);
       const commentButton = await ig.page.waitFor(ig.elements.postCommentSubmit, { timeout: 3000 });
       await commentButton.click();
