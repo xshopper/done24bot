@@ -56,7 +56,7 @@ process: async () => {
 
   var order = shopify_orders.orders[order_nr];
 
-  if (order.tags === 'amazon') {
+  if (order.tags === 'amazon.com.au') {
     console.log('load google products')
 
     ig.parameters.order_id = order.id;
