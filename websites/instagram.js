@@ -770,25 +770,24 @@ const ig = {
   },
 
   getUsernameFromPost: async () => {
-    var result = '';
     console.log('getUsernameFromPost');
-    try {
-      result = await ig.page.evaluate((selector) => {
+
+    return new Promise((resolve, reject) => {
+        ig.page.evaluate((selector) => {
         const username = document.evaluate(selector.usernameFromPost, document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
         try {
           for (let i = 0, length = username.snapshotLength; i < length; ++i) {
             var elem = username.snapshotItem(i).href
             elem = elem.match(/(?:(?:http|https):\/\/)?(?:www.)?(?:ig.com|instagr.am)\/([A-Za-z0-9-_]+)/im)
-            return elem.length > 1 ? elem[1] : null;
+	    resolve(elem.length > 1 ? elem[1] : null);
           }
         } catch (e) {
-          console.log('getUsernameFromPost', e);
+	  console.log('getUsernameFromPost', e);
+	  reject(e);
         }
       }, ig.elements);
-    } catch (e) {
-      console.log(e);
-    }
-    return result;
+
+    });
   },
 
   getProfileData: async () => {
