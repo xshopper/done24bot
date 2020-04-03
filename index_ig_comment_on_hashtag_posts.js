@@ -44,7 +44,7 @@ const ig = {
 		try {
 			var myComment = await ig.bot.page.waitFor('//*[@href="/' + ig.bot.username + '/"]', { timeout: 2000 });
 		} catch(e) {
-			var myComment null;
+			var myComment  = null;
 		}
 
 		if(!myComment) {
