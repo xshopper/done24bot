@@ -42,7 +42,7 @@ const ig = {
 		//var user = await ig.bot.getUsernameFromPost();
                 await ig.bot.openComments();
 		try {
-			var myComment = await ig.bot.page.waitFor('//*[@href="/' + ig.bot.username + '"]', { timeout: 100 });
+			var myComment = await ig.bot.page.waitFor('//*[@href="/' + ig.bot.username + '"]', { timeout: 2000 });
 		} catch(e) {
                 	await ig.bot.pastComment(ig.parameters.message);
 		}
