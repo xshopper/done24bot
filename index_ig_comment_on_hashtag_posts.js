@@ -41,9 +41,10 @@ const ig = {
             await ig.bot.openRecentPostOneByOne(ig.parameters.nr_of_likes, async (col, item) => {
 		//var user = await ig.bot.getUsernameFromPost();
                 await ig.bot.openComments();
-		var myComment = await ig.bot.page.waitFor('//*[@href="/' + ig.bot.username + '"]', { timeout: 100 });
-		if(!myComment)  {
-                await ig.bot.pastComment(ig.parameters.message);
+		try {
+			var myComment = await ig.bot.page.waitFor('//*[@href="/' + ig.bot.username + '"]', { timeout: 100 });
+		} catch(e) {
+                	await ig.bot.pastComment(ig.parameters.message);
 		}
 		//await ig.utils.log({ "comment": ig.parameters.message, "instagram": ig.bot.username , "target_instagram" : user })
 
