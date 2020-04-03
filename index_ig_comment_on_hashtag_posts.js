@@ -44,7 +44,11 @@ const ig = {
 		try {
 			var myComment = await ig.bot.page.waitFor('//*[@href="/' + ig.bot.username + '/"]', { timeout: 2000 });
 		} catch(e) {
-                	await ig.bot.pastComment(ig.parameters.message);
+			var myComment null;
+		}
+
+		if(!myComment) {
+			await ig.bot.pastComment(ig.parameters.message);
 		}
 		//await ig.utils.log({ "comment": ig.parameters.message, "instagram": ig.bot.username , "target_instagram" : user })
 
