@@ -26,6 +26,7 @@ like_posts: async () => {
                 if (log.wait > 0) {
 		    console.log(log);
                     console.log('wait ' + log.wait)
+		    alert(log.reached_limit + " ... waiting " + (log.wait/60000) + " minutes")
                     await ig.utils.sleep(log.wait);
                 }
                 await ig.utils.sleep(3000);
