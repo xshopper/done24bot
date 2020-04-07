@@ -94,6 +94,9 @@ process: async () => {
     // console.log('found address', address[0]);
 
     ig.parameters['customer']['phone'] = order.shipping_address.phone.replace('+61','0');
+    if (ig.parameters['customer']['phone'] === "0") {
+	ig.parameters['customer']['phone'] = "000000000"
+    }
     ig.parameters['customer']['city'] = picked_city.replace(/\n/g,' ');
     try {
     	ig.parameters['customer']['state'] = order.shipping_address.province_code.replace(/\n/g,' ');
