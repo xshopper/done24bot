@@ -29,9 +29,10 @@ const li = {
         await li.utils.sleep(1000);
 
         try {
-            await li.bot.mainFeedLike(li.parameters.nr_of_likes);
+            return await li.bot.mainFeedLike(li.parameters.nr_of_likes);
         } catch (e) {
-            console.log(e);
+            console.log(e);s
+	    return e;
         }
 
     },

@@ -130,9 +130,10 @@ const li = {
 
 				await li.utils.sleep(2000);
 			}
-
-		} catch (e) { }
+		
+		} catch (e) { console.log(e) }
 		await li.utils.sleep(2000);
+		return ('script is finished ok, liked:' + count + ' articles')
 	},
 
 	likePostByArticleNode: async (element) => {
