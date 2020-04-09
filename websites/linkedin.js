@@ -103,8 +103,12 @@ const li = {
 					await li.likePostByArticleNode(article);
 					count++;
 				} else {
-
-					article = await li.page.evaluateHandle(el => el.nextElementSibling, article);
+					try {
+						article = await li.page.evaluateHandle(el => el.nextElementSibling, article);
+					} catch(e) {
+						article = await li.page.$('ol#feed-container > li.feed-item');
+	                                        const totalArticle = (await li.page.$$('ol#feed-container > li.feed-item')).length;
+					}
 
 					if (!article) {
 						break;
