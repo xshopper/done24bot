@@ -97,7 +97,7 @@ const amazon = {
           await amazon.page.waitFor(1000);
 
           await amazon.page.waitFor(amazon.element.usernameInput);
-          await amazon.page.type(amazon.element.usernameInput, username, { delay: 50 });
+          await amazon.page.type(amazon.element.usernameInput, username, { delay: 1 });
 
           await amazon.page.waitFor(1000);
 
@@ -110,7 +110,7 @@ const amazon = {
           await amazon.page.waitFor(1000);
 
           await amazon.page.waitFor(amazon.element.passwordInput);
-          await amazon.page.type(amazon.element.passwordInput, password, { delay: 50 });
+          await amazon.page.type(amazon.element.passwordInput, password, { delay: 1 });
 
           await amazon.page.waitFor(1000);
 
@@ -165,7 +165,7 @@ const amazon = {
 		await amazon.utils.clearInput(amazon, amazon.element.productSearch);
        		await amazon.page.waitFor(amazon.element.productSearch);
 		console.log("search:" , amazon.parameters.products[i].barcode);
-       		await amazon.page.type(amazon.element.productSearch, amazon.parameters.products[i].barcode, { delay: 50 });
+       		await amazon.page.type(amazon.element.productSearch, amazon.parameters.products[i].barcode, { delay: 1 });
        		await amazon.page.keyboard.press('Enter');
        		await amazon.page.waitFor(3000);
 		await amazon.utils.click(amazon, amazon.element.searchProductNode, 10000)
@@ -194,7 +194,7 @@ const amazon = {
             await amazon.page.waitFor(1000);
 
             await amazon.page.waitFor(amazon.element.checkoutPassword);
-            await amazon.page.type(amazon.element.checkoutPassword, password, { delay: 50 });
+            await amazon.page.type(amazon.element.checkoutPassword, password, { delay: 1 });
 
             await amazon.page.waitFor(1000);
 
@@ -217,23 +217,23 @@ const amazon = {
 
 	console.log('inputFullname');
         await amazon.page.waitFor(amazon.element.inputFullname);
-        await amazon.page.type(amazon.element.inputFullname, amazon.parameters.customer.name, { delay: 50 });
+        await amazon.page.type(amazon.element.inputFullname, amazon.parameters.customer.name, { delay: 1 , timeout : 30000 });
 
 	console.log('inputPhoneno');
         await amazon.page.waitFor(amazon.element.inputPhoneno);
-        await amazon.page.type(amazon.element.inputPhoneno, amazon.parameters.customer.phone, { delay: 50 });
+        await amazon.page.type(amazon.element.inputPhoneno, amazon.parameters.customer.phone, { delay: 1 });
 
 	await amazon.page.waitFor(1000);
 
 	console.log('inputAddress');
         await amazon.page.waitFor(amazon.element.inputAddress);
-        await amazon.page.type(amazon.element.inputAddress, amazon.parameters.customer.address, { delay: 50 });
+        await amazon.page.type(amazon.element.inputAddress, amazon.parameters.customer.address, { delay: 1 });
 
 	await amazon.page.waitFor(1000);
 
 	console.log('inputPostcode');
         await amazon.page.waitFor(amazon.element.inputPostcode);
-        await amazon.page.type(amazon.element.inputPostcode, amazon.parameters.customer.postcode, { delay: 50 });
+        await amazon.page.type(amazon.element.inputPostcode, amazon.parameters.customer.postcode, { delay: 1 });
         await amazon.page.$eval(amazon.element.inputPostcode, e => e.blur());
 
 	await amazon.page.waitFor(1000);
@@ -252,11 +252,11 @@ const amazon = {
 
 //	console.log('inputCity');
 //        await amazon.page.waitFor(amazon.element.inputCity);
-//        await amazon.page.type(amazon.element.inputCity, amazon.parameters.customer.city, { delay: 50 });
+//        await amazon.page.type(amazon.element.inputCity, amazon.parameters.customer.city, { delay: 1 });
 
 //	console.log('inputState');
 //        await amazon.page.waitFor(amazon.element.inputState);
-//        await amazon.page.type(amazon.element.inputState, amazon.parameters.customer.state, { delay: 50 });
+//        await amazon.page.type(amazon.element.inputState, amazon.parameters.customer.state, { delay: 1 });
 
 	console.log('submitAddress')
         await amazon.page.waitFor(amazon.element.submitAddress);
@@ -293,7 +293,7 @@ const amazon = {
 
 			await amazon.utils.clearInput(amazon, '#gift-message-sender-input-' + j , 1000)
 			await amazon.utils.wait(500, amazon);
-		        await amazon.page.type('#gift-message-sender-input-' + j, from, { delay: 50 });
+		        await amazon.page.type('#gift-message-sender-input-' + j, from, { delay: 1 });
 			await amazon.utils.wait(500, amazon);
 
 
@@ -330,8 +330,8 @@ const amazon = {
 	await amazon.page.waitFor(amazon.element.nameOnCard)
 
 
-        await amazon.page.type(amazon.element.nameOnCard, amazon.parameters.buyer.nameOnCard, { delay: 50 });
-        await amazon.page.type(amazon.element.cardNumber, amazon.parameters.buyer.cardNumber, { delay: 50 });
+        await amazon.page.type(amazon.element.nameOnCard, amazon.parameters.buyer.nameOnCard, { delay: 1 });
+        await amazon.page.type(amazon.element.cardNumber, amazon.parameters.buyer.cardNumber, { delay: 1 });
 	var expMonth = await amazon.page.waitFor(amazon.element.selectExpMonth);
 	expMonth.select(amazon.parameters.buyer.expireMonth);
 	var expYear = await amazon.page.waitFor(amazon.element.selectExpYear);
