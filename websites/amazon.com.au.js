@@ -301,8 +301,8 @@ const amazon = {
 			console.log(e)
 			break; }
 	}
-
-	await amazon.utils.click(amazon,amazon.element.saveGiftOption,1000);
+	
+	await amazon.utils.click(amazon,amazon.element.Continue,1000);
 	await amazon.utils.wait(4000, amazon);
 	await amazon.utils.click(amazon,amazon.element.Continue,1000);
 	await amazon.utils.wait(2000, amazon);
