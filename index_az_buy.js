@@ -12,6 +12,7 @@ form: [{ "id": "shopify_url", "elem" : "input", "placeholder" : "shopify_url wit
         ,{ "id": "card_expmonth", "elem" : "input", "placeholder" : "Credit card expire month MM"}
 	,{ "id": "card_expyear", "elem" : "input", "placeholder" : "Credit card Expire year YYYY"}
 	,{ "id": "card_cvv", "elem" : "input", "placeholder" : "Credit Card CVV"}
+	,{ "id": "amazon_password", "elem" : "input", "placeholder" : "Amazon Password"}
 	,{ "id": "gift_card", "elem" : "input", "placeholder" : "Gift Card"}
 	,{ "id": "gift_from", "elem" : "input", "placeholder" : "Gift From"}  ],
 

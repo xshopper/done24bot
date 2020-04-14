@@ -188,13 +188,13 @@ const amazon = {
             checkoutBtn && checkoutBtn.click();
         }, amazon.element);
 
-/*	console.log('checkoutPassword')
+	console.log('checkoutPassword')
         try {
 
             await amazon.page.waitFor(1000);
 
             await amazon.page.waitFor(amazon.element.checkoutPassword);
-            await amazon.page.type(amazon.element.checkoutPassword, password, { delay: 1 });
+            await amazon.page.type(amazon.element.checkoutPassword, amazon.parameters.amazon_password, { delay: 1 });
 
             await amazon.page.waitFor(1000);
 
@@ -207,7 +207,21 @@ const amazon = {
         } catch (err) {
             console.error(err);
         }
-*/
+
+	while (!addressEmpty) {
+                var addressEmpty = false;
+
+                try {
+			await amazon.utils.click(amazon , amazon.element.addNewAddress, 1000);
+                        addressEmpty = true
+                } catch (e) {
+                        addressEmpty = false
+                        await amazon.utils.click(amazon, amazon.element.deleteCart, 1000)
+                        await amazon.page.waitFor(3000);
+                }
+        }
+
+
 
 	await amazon.utils.wait(2000, amazon);
 	await amazon.utils.click(amazon , amazon.element.addNewAddress, 10000);
