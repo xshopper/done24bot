@@ -33,6 +33,7 @@ const element = {
     cart: '//*[@aria-label="Cart"]',
     empytCart : '//*[contains(text(),"Your Shopping Cart is empty")]',
     deleteCart: '//*[contains(@class,"a-span-last")]//*[contains(text(),"Delete")]/..//input',
+    deleteAddress: '//*[contains(@class,"address")]//*[contains(text(),"Delete")]/..//ad',
     home: '//*[@id="nav-logo"]/a',
     closeAppModal: '//*[@id="afap-interstitial-dlg"]/div[5]/div/span/a',
     cartItemNumber: '//*[@id="nav-button-cart"]/div/span',
@@ -208,15 +209,17 @@ const amazon = {
             console.error(err);
         }
 
+	var addressEmpty = false;
 	while (!addressEmpty) {
-                var addressEmpty = false;
-
                 try {
 			await amazon.utils.click(amazon , amazon.element.addNewAddress, 1000);
                         addressEmpty = true
                 } catch (e) {
                         addressEmpty = false
-                        await amazon.utils.click(amazon, amazon.element.deleteCart, 1000)
+			amazon.page.on('dialog', async dialog => {
+  				await amazon.dialog.accept();
+			});
+                        await amazon.utils.click(amazon, amazon.element.deleteAddress, 1000)
                         await amazon.page.waitFor(3000);
                 }
         }
