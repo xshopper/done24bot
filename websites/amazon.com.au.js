@@ -36,7 +36,7 @@ const element = {
     home: '//*[@id="nav-logo"]/a',
     closeAppModal: '//*[@id="afap-interstitial-dlg"]/div[5]/div/span/a',
     cartItemNumber: '//*[@id="nav-button-cart"]/div/span',
-    saveGiftOption: '//*[contains(text(),"Save gift option")]/../input',
+    saveGiftOption: '//input[@data-testid="GiftOptions_saveButton"]',
     addGiftOptions : '//*[contains(text(),"Add gift options")]//..',
     continueDelivery: '//*[@id="a-autoid-0"]/span/input',
     continueDeliveryNew: '//*[@id="shippingOptionFormId"]/span[1]/span/input',
@@ -302,7 +302,7 @@ const amazon = {
 			break; }
 	}
 	
-	await amazon.utils.click(amazon,amazon.element.Continue,1000);
+	await amazon.utils.click(amazon,amazon.element.saveGiftOption,1000);
 	await amazon.utils.wait(4000, amazon);
 	await amazon.utils.click(amazon,amazon.element.Continue,1000);
 	await amazon.utils.wait(2000, amazon);
