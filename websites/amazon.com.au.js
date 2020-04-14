@@ -212,9 +212,11 @@ const amazon = {
 	var addressEmpty = false;
 	while (!addressEmpty) {
                 try {
+			console.log('address is empty');
 			await amazon.utils.click(amazon , amazon.element.addNewAddress, 1000);
                         addressEmpty = true
                 } catch (e) {
+			console.log('delete address');
                         addressEmpty = false
 			amazon.page.on('dialog', async dialog => {
   				await amazon.dialog.accept();
@@ -223,12 +225,12 @@ const amazon = {
                         await amazon.page.waitFor(3000);
                 }
         }
-
-
-
-	await amazon.utils.wait(2000, amazon);
-	await amazon.utils.click(amazon , amazon.element.addNewAddress, 10000);
-        await amazon.utils.wait(2000, amazon);
+	
+	try {
+		await amazon.utils.wait(2000, amazon);
+		await amazon.utils.click(amazon , amazon.element.addNewAddress, 5000);
+        	await amazon.utils.wait(2000, amazon);	
+        } catch(e) {}
 
 	await amazon.page.waitFor(1000);
 
