@@ -213,7 +213,7 @@ const amazon = {
 	while (!addressEmpty) {
                 try {
 			console.log('address is empty');
-			await amazon.utils.click(amazon , amazon.element.addNewAddress, 1000);
+			await amazon.utils.click(amazon , amazon.element.inputFullname, 1000);
                         addressEmpty = true
                 } catch (e) {
 			console.log('delete address');
