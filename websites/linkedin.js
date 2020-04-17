@@ -48,7 +48,7 @@ const li = {
 
 		try {
 			await li.page.waitFor(element, { timeout: 10000 });
-			li.getUsername();	
+			await li.getUsername();	
 			return { "status": "Logged In" }
 		} catch (e) {
 			console.log('Logging in...')
@@ -73,7 +73,7 @@ const li = {
 				await loginButton2[0].click();
 				try {
 					await li.page.waitFor(element, { timeout: 300000 });
-					li.getUsername();
+					await li.getUsername();
 					return { "status": "Logged In" }
 				} catch (e) {
 					return 'Does not logged in';
@@ -81,7 +81,7 @@ const li = {
 			}
 
 			await li.page.waitFor(element, { timeout: 300000 });
-			li.getUsername();
+			await li.getUsername();
 			return { "status": "Logged In" }
 		} catch (e) {
 			console.log("Login Failed");
