@@ -48,9 +48,12 @@ const ig = {
 		}
 
 		if(!myComment) {
-			await ig.bot.pastComment(ig.parameters.message);
+			var log = await ig.bot.pastComment(ig.parameters.message);
+			if (log && log.wait > 0) {
+                                console.log('wait ' + log.wait)
+                                await ig.utils.sleep(log.wait);
+                        }
 		}
-		//await ig.utils.log({ "comment": ig.parameters.message, "instagram": ig.bot.username , "target_instagram" : user })
 
                 await ig.bot.goBack();
             });

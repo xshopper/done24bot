@@ -630,8 +630,9 @@ const ig = {
       ig.cancelMessage();
       const commentButton = await ig.page.waitFor(ig.elements.postCommentSubmit, { timeout: 3000 });
       await commentButton.click();
+      ig.cancelMessage();
       let log = await ig.utils.log({"message" : "comment" , "instagram" : ig.username, "url" : ig.page.url()} )
-      return true;
+      return log;
     } catch (e) {
       await ig.utils.log({ "error": "pastComment", "url": ig.page.url() })
       console.log('pastComment', e, ig.page.url());
