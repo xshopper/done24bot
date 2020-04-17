@@ -4,6 +4,7 @@ const li = {
 		signInButton: '//*[@id="app__container"]/main/div/div[2]/form/div[3]/button',
 		newPostButton: '//*[@id="share-prompt-link"]',
 		likeButton: '//*[@id="reactions-list"]/div[1]/button',
+		profileButton: 'a[title="Profile"]',
 		username: 'input[id="username"]',
 		password: 'input[id="password"]'
 	},
@@ -25,12 +26,29 @@ const li = {
 		}
 	},
 
+	getUsername: async() => {
+
+	      const elementHandles = await li.page.$$(li.elements.profileButton);
+
+	      const propertyJsHandles = await Promise.all(
+      			elementHandles.map(handle => handle.getProperty('href'))
+    	      );
+    	      
+              const hrefs2 = await Promise.all(
+      	      		propertyJsHandles.map(handle => handle.jsonValue())
+    	      );
+	
+	      li.username = hrefs2[0].replace('https://www.linkedin.com/mwlite/in/','');
+	      console.log("logged in user:", li.username);
+	},
+
 	login: async (username, password) => {
 		console.log('login...')
-		var element = li.elements.newPostButton
+		var element = li.elements.profileButton
 
 		try {
 			await li.page.waitFor(element, { timeout: 10000 });
+			li.getUsername();	
 			return { "status": "Logged In" }
 		} catch (e) {
 			console.log('Logging in...')
@@ -55,6 +73,7 @@ const li = {
 				await loginButton2[0].click();
 				try {
 					await li.page.waitFor(element, { timeout: 300000 });
+					li.getUsername();
 					return { "status": "Logged In" }
 				} catch (e) {
 					return 'Does not logged in';
@@ -62,6 +81,7 @@ const li = {
 			}
 
 			await li.page.waitFor(element, { timeout: 300000 });
+			li.getUsername();
 			return { "status": "Logged In" }
 		} catch (e) {
 			console.log("Login Failed");
