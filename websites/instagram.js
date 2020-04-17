@@ -52,6 +52,7 @@ const ig = {
     suspiciousLoginAttempt: '//*[contains(text(), "Suspicious Login Attempt")]',
     actionBlocked: '//*[contains(text(), "Action Blocked")]',
     temporaryBlocked: '//*[contains(text(), "Temporarily Blocked")]',
+    couldNotComment: '//*[contains(text(),"Couldn\'t post comment")]',
     reportProblem: '//*[contains(text(), "Report a Problem")]',
     following: '//*[contains(@href, "following")]',
     followers: '//*[contains(@href, "followers")]',
@@ -205,6 +206,13 @@ const ig = {
     } catch (e) {
     }
 
+    try {
+	await ig.page.waitFor(ig.elements.couldNotComment, { timeout: 800 });
+	await ig.utils.log({ "message": "Clouldn't post comment" });
+	return { "status": "Clouldn't post comment" }
+    } catch (e) {
+    }
+
     ig.cancelMessage();
     await ig.utils.log({ "message": "Login Error" });
     return { "status": "Login Error" }
@@ -279,6 +287,13 @@ const ig = {
       await ig.utils.log({ "message": "Temporary Blocked" })
       return "Temporary Blocked"
     } catch (e) { }
+
+    try {
+        await ig.page.waitFor(ig.elements.couldNotComment, { timeout: 800 });
+        await ig.utils.log({ "message": "Clouldn't post comment" });
+        return { "status": "Clouldn't post comment" }
+    } catch (e) {
+    }
 
   },
 
@@ -612,6 +627,7 @@ const ig = {
     try {
       await ig.page.type(ig.elements.postCommentInput, comment, { delay : 0 });
       await ig.page.waitFor(1000);
+      ig.cancelMessage();
       const commentButton = await ig.page.waitFor(ig.elements.postCommentSubmit, { timeout: 3000 });
       await commentButton.click();
       let log = await ig.utils.log({"message" : "comment" , "instagram" : ig.username, "url" : ig.page.url()} )
