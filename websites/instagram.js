@@ -899,7 +899,7 @@ const ig = {
       let article = null;
       let count = 0;
       while (viewStoriesCount > count) {
-        console.log(count + 1);
+        console.log(count + 1, ig.page.url() );
 
         await ig.turnOffNotification();
 
