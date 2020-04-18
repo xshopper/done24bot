@@ -185,6 +185,8 @@ const ig = {
     innerHTML = innerHTML.substr(0, innerHTML.length - 1);
     ig.username = JSON.parse(innerHTML).config.viewer.username;
     ig.elements.profileButton = '//a[@href="/' + ig.username + '/"]'
+
+    console.log('logged in user:', ig.username);
   },
 
   catchError: async () => {
