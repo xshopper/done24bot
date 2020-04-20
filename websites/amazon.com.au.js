@@ -218,7 +218,7 @@ const amazon = {
                           amazon.page.on('dialog', async dialog => {
                                 await amazon.page.dialog.accept();
                           });
-                          await amazon.utils.click(amazon, amazon.element.deleteAddress, 1000)
+                          addressEmpty = !await amazon.utils.click(amazon, amazon.element.deleteAddress, 1000)
                           await amazon.page.waitFor(3000);
 			}
 		} catch(e) {
