@@ -10,6 +10,7 @@ parameters:null,
 init: async() => {
 	console.log('init...');
 	ig.bot.utils = await ig.utils.requireFromURL('https://raw.githubusercontent.com/xshopper/done24bot/master/websites/instagram.js')
+	ig.bot.utils = ig.utils;
 },
 
 process: async () => {
