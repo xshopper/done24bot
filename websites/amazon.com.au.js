@@ -213,15 +213,16 @@ const amazon = {
 	var addressEmpty = false;
 	while (!addressEmpty) {
 		try {
-			console.log('delete address');
-                        addressEmpty = false
-                        amazon.page.on('dialog', async dialog => {
+			if(!addressEmpty) {
+			  console.log('delete address');
+                          amazon.page.on('dialog', async dialog => {
                                 await amazon.page.dialog.accept();
-                        });
-                        await amazon.utils.click(amazon, amazon.element.deleteAddress, 1000)
-                        await amazon.page.waitFor(3000);
+                          });
+                          await amazon.utils.click(amazon, amazon.element.deleteAddress, 1000)
+                          await amazon.page.waitFor(3000);
+			}
 		} catch(e) {
-			addressEmpty = true
+			addressEmpty = true;
 		}
         }
 	
