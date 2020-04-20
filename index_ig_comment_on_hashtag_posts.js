@@ -12,7 +12,7 @@ const ig = {
 
     init: async () => {
         console.log('init...');
-        ig.bot = await ig.utils.httpRequestURL('https://raw.githubusercontent.com/xshopper/done24bot/master/websites/instagram.js');
+        ig.bot = await ig.utils.requireFromURL('https://raw.githubusercontent.com/xshopper/done24bot/master/websites/instagram.js');
         ig.bot.utils = ig.utils;
     },
 
