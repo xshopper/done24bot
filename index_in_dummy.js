@@ -10,9 +10,7 @@ const li = {
 
     init: async () => {
         console.log('init...');
-        var module = await li.utils.httpRequestText('https://raw.githubusercontent.com/xshopper/done24bot/master/websites/linkedin.js');
-        li.bot = await li.utils.requireFromString(module);
-        li.bot.utils = li.utils;
+        li.bot.utils = await li.utils.requireFromURL('https://raw.githubusercontent.com/xshopper/done24bot/master/websites/linkedin.js');
     },
 
     process: async () => {

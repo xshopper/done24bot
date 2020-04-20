@@ -9,9 +9,7 @@ parameters:null,
 
 init: async() => {
 	console.log('init...');
-	var module = await ig.utils.httpRequestText('https://raw.githubusercontent.com/xshopper/done24bot/master/websites/instagram.js')
-        ig.bot = await ig.utils.requireFromString(module)
-	ig.bot.utils = ig.utils;
+	ig.bot.utils = await ig.utils.requireFromURL('https://raw.githubusercontent.com/xshopper/done24bot/master/websites/instagram.js')
 },
 
 process: async () => {

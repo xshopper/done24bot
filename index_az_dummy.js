@@ -10,12 +10,10 @@ form: [],
 
 init: async() => {
 	console.log('init...');
-	var module = await ig.utils.httpRequestText('https://raw.githubusercontent.com/xshopper/done24bot/master/websites/amazon.com.au.js')
-        ig.bot = await ig.utils.requireFromString(module)
+	ig.bot= await ig.utils.requireFromURL('https://raw.githubusercontent.com/xshopper/done24bot/master/websites/amazon.com.au.js')
 	ig.bot.utils = ig.utils;
 
-	var lodash = await ig.utils.httpRequestText('https://raw.githubusercontent.com/lodash/lodash/4.17.15-npm/lodash.js');
-	ig.lodash = await ig.utils.requireFromString(lodash)
+	ig.lodash = await ig.utils.requireFromURL('https://raw.githubusercontent.com/lodash/lodash/4.17.15-npm/lodash.js');
 	
 },
 

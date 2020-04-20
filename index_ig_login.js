@@ -6,9 +6,8 @@ parameters:{},
 form: [{ "id": "v_username", "elem" : "input", "placeholder" : "Username"}, { "id": "v_password", "elem" : "input", "placeholder" : "Password"}],
 init: async() => {
 	console.log('init.......new');
-	var module = await ig.utils.httpRequestText('https://raw.githubusercontent.com/xshopper/done24bot/master/websites/instagram.js')
-        ig.bot = await ig.utils.requireFromString(module)
-
+	ig.bot = await ig.utils.requireFromURL('https://raw.githubusercontent.com/xshopper/done24bot/master/websites/instagram.js')
+	
 	ig.bot.utils = ig.utils;
 },
 

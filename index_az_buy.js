@@ -18,19 +18,16 @@ form: [{ "id": "shopify_url", "elem" : "input", "placeholder" : "shopify_url wit
 
 init: async() => {
 	console.log('init...');
-	var module = await ig.utils.httpRequestText('https://raw.githubusercontent.com/xshopper/done24bot/master/websites/amazon.com.au.js')
-        ig.bot = await ig.utils.requireFromString(module)
+	ig.bot =  await ig.utils.requireFromURL('https://raw.githubusercontent.com/xshopper/done24bot/master/websites/amazon.com.au.js')
 	ig.bot.utils = ig.utils;
 
-	var lodash = await ig.utils.httpRequestText('https://raw.githubusercontent.com/lodash/lodash/4.17.15-npm/lodash.js');
-	ig.lodash = await ig.utils.requireFromString(lodash)
+	ig.lodash = await ig.utils.requireFromURL('https://raw.githubusercontent.com/lodash/lodash/4.17.15-npm/lodash.js');
 	
 },
 
 process: async () => {
 
-        var module = await ig.utils.httpRequestText('https://raw.githubusercontent.com/xshopper/done24bot/master/websites/shopify.js')
-        var shopify = await ig.utils.requireFromString(module)
+        var shopify = await ig.utils.requireFromURL('https://raw.githubusercontent.com/xshopper/done24bot/master/websites/shopify.js')
 
 	shopify.utils = ig.utils;
 	shopify.initialise(ig.parameters.shopify_url);
@@ -77,7 +74,6 @@ process: async () => {
     if(!order.shipping_address.phone) {
 	order.shipping_address.phone ='0'
     }
-
 
     let address_text = order.shipping_address.address1 + ", " + order.shipping_address.city + "," + order.shipping_address.zip + ", " + order.country
 
