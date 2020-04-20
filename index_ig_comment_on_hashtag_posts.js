@@ -50,7 +50,7 @@ const ig = {
 		if(!myComment) {
 			var log = await ig.bot.pastComment(ig.parameters.message);
 			if (log && log.wait > 0) {
-                                console.log('wait ' + log.wait)
+                                console.log('wait ' + log)
                                 await ig.utils.sleep(log.wait);
                         }
 		}
