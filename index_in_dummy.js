@@ -11,6 +11,7 @@ const li = {
     init: async () => {
         console.log('init...');
         li.bot = await li.utils.requireFromURL('https://raw.githubusercontent.com/xshopper/done24bot/master/websites/linkedin.js');
+	li.bot.utils = li.utils;
     },
 
     process: async () => {
