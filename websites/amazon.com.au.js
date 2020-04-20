@@ -216,7 +216,7 @@ const amazon = {
 			console.log('delete address');
                         addressEmpty = false
                         amazon.page.on('dialog', async dialog => {
-                                await amazon.dialog.accept();
+                                await amazon.page.dialog.accept();
                         });
                         await amazon.utils.click(amazon, amazon.element.deleteAddress, 1000)
                         await amazon.page.waitFor(3000);
