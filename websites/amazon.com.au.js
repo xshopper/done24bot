@@ -56,7 +56,8 @@ const element = {
     placeYourOrder: '//*[contains(text(),"Place your order")]/..//input',
     reviewOrder: '//*[text()[contains(.,"Review")]]',
     trackShipment : '//*[text()[contains(.,"Track shipment")]]',
-    amazonCartIsEmpty : '//*[contains(text(),"Your Amazon cart is empty")]'
+    amazonCartIsEmpty : '//*[contains(text(),"Your Amazon cart is empty")]',
+    orderedText : '//*[contains(text(),"Ordered")]'
 }
 
 
@@ -236,7 +237,7 @@ const amazon = {
 
 	console.log('inputFullname');
         await amazon.page.waitFor(amazon.element.inputFullname);
-        await amazon.page.type(amazon.element.inputFullname, amazon.parameters.customer.name, { delay: 1 , timeout : 30000 });
+        await amazon.page.type(amazon.element.inputFullname, amazon.parameters.customer.name.replace("`","'").replace("’","'"), { delay: 1 , timeout : 30000 });
 
 	console.log('inputPhoneno');
         await amazon.page.waitFor(amazon.element.inputPhoneno);
@@ -246,7 +247,7 @@ const amazon = {
 
 	console.log('inputAddress');
         await amazon.page.waitFor(amazon.element.inputAddress);
-        await amazon.page.type(amazon.element.inputAddress, amazon.parameters.customer.address, { delay: 1 });
+        await amazon.page.type(amazon.element.inputAddress, amazon.parameters.customer.address.replace("`","'").replace("’","'"), { delay: 1 });
 
 	await amazon.page.waitFor(1000);
 
@@ -342,7 +343,13 @@ const amazon = {
 	await amazon.utils.wait(4000, amazon);
 	await amazon.utils.click(amazon, amazon.element.trackShipment, 1000);
         await amazon.utils.wait(4000, amazon);
-	return amazon.page.url()
+
+	try {
+		await amazon.page.waitFor(amazon.element.orderedText);
+		return amazon.page.url()
+	} catch (e) {
+		return false;
+	}
     },
 
     setCreditCard: async () => {
