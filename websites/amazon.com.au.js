@@ -11,7 +11,7 @@ const element = {
     productSearch: 'input[id="nav-search-keywords"]',
     clearSearch: '//*[contains(@aria-label,"Clear search keywords")]',
     productSearchSubmit: '/html/body/div[1]/header/div/div[4]/form/div[2]/div/input',
-    searchProductNode: '//*[contains(@class,"s-search-results")]//*[@data-index="0"]//*[@title="product-detail"]',
+    searchProductNode: '//*[@data-index="0"]//*[@title="product-detail"]',
     seeBuyingBtn: '//*[contains(text(),"Buy Now")]',
     addCartBtn: '//*[contains(text(),"Add to Cart")]/../input',
     checkGift: '//*[@id="sc-buy-box-gift-checkbox"]',
