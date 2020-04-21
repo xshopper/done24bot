@@ -174,10 +174,11 @@ const li = {
 				}
 			let log = await li.utils.log({ "message": "like", "linkedin": li.username, "url": li.page.url() });
 			}
-			return;
 		} catch (e) {
-			retrun await li.utils.log({ "error": "likePostByArticleNode", "url": li.page.url(), "error": e });
+			await li.utils.log({ "error": "likePostByArticleNode", "url": li.page.url(), "error": e });
 		}
+
+		retrun;
 	},
 
 	createXPathFromElement: async (ele) => {
