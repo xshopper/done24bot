@@ -163,7 +163,7 @@ const li = {
 	likePostByArticleNode: async (element) => {
 		try {
 			await li.utils.sleep(1500);
-			const likeButtonXpath = await li.createXPathFromElement(element) + '/section/div[2]/button[@aria-pressed="false"]';
+			const likeButtonXpath = await li.createXPathFromElement(element) + '/section/div[2]/button[1]';
 			const [likeButtonOuter] = await li.page.$x(likeButtonXpath);
 			if (likeButtonOuter) {
 				await likeButtonOuter.click();
