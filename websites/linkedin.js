@@ -178,7 +178,7 @@ const li = {
 			await li.utils.log({ "error": "likePostByArticleNode", "url": li.page.url(), "error": e });
 		}
 
-		retrun;
+		return;
 	},
 
 	createXPathFromElement: async (ele) => {
