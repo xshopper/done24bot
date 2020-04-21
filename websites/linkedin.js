@@ -97,10 +97,9 @@ const li = {
 
 	mainFeedLike: async (viewStoriesCount) => {
 		await li.page.waitFor(2000);
+		let article = null;
+                let count = 0;
 		try {
-
-			let article = null;
-			let count = 0;
 			while (viewStoriesCount > count) {
 				console.log(count + 1);
 
