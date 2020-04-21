@@ -163,7 +163,7 @@ const li = {
 	likePostByArticleNode: async (element) => {
 		try {
 			await li.utils.sleep(1500);
-			const likeButtonXpath = await li.createXPathFromElement(element) + '/section/div[2]/button[1]';
+			const likeButtonXpath = await li.createXPathFromElement(element) + '/section/div[2]/button[@aria-pressed="false"]';
 			const [likeButtonOuter] = await li.page.$x(likeButtonXpath);
 			if (likeButtonOuter) {
 				await likeButtonOuter.click();
@@ -172,11 +172,11 @@ const li = {
 				if (likeButtonInner) {
 					await likeButtonInner.click();
 				}
-			}
 			let log = await li.utils.log({ "message": "like", "linkedin": li.username, "url": li.page.url() });
-			return (log);
+			}
+			return;
 		} catch (e) {
-			await li.utils.log({ "error": "likePostByArticleNode", "url": li.page.url(), "error": e });
+			retrun await li.utils.log({ "error": "likePostByArticleNode", "url": li.page.url(), "error": e });
 		}
 	},
 
