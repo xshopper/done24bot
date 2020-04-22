@@ -71,6 +71,7 @@ process: async () => {
 
     ig.parameters['customer']['name'] = order.shipping_address.first_name.replace(/’/,"") + " " + order.shipping_address.last_name.replace(/’/,"");
     ig.parameters['customer']['address'] = order.shipping_address.address1.replace(/\n/g,' ');
+    ig.parameters['customer']['address2'] = order.shipping_address.address2.replace(/\n/g,' ');
     if(!order.shipping_address.phone) {
 	order.shipping_address.phone ='0'
     }

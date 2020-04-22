@@ -24,6 +24,7 @@ const element = {
     inputFullname: 'input[id="enterAddressFullName"]',
     inputPhoneno: 'input[id="enterAddressPhoneNumber"]',
     inputAddress: 'input[id="enterAddressAddressLine1"]',
+    inputAddress2: 'input[id="enterAddressAddressLine2"]',
     inputPostcode: 'input[id="enterAddressPostalCode"]',
     inputCity: 'input[id="enterAddressCityText"]',
     inputState: 'input[id="enterAddressStateOrRegionText"]',
@@ -251,6 +252,12 @@ const amazon = {
         await amazon.page.type(amazon.element.inputAddress, amazon.parameters.customer.address.replace("`","'").replace("’","'"), { delay: 1 });
 
 	await amazon.page.waitFor(1000);
+
+	console.log('inputAddress2');
+        await amazon.page.waitFor(amazon.element.inputAddress2);
+        await amazon.page.type(amazon.element.inputAddress2, amazon.parameters.customer.address2.replace("`","'").replace("’","'"), { delay: 1 });
+
+        await amazon.page.waitFor(1000);
 
 	console.log('inputPostcode');
         await amazon.page.waitFor(amazon.element.inputPostcode);
