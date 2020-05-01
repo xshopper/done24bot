@@ -32,7 +32,7 @@ const element = {
     gifTextarea: '#message-area-0',
     gifTextareaEle: '//*[@id="message-area-0"]',
     cart: '//*[@aria-label="Cart"]',
-    empytCart : '//*[contains(text(),"Your Shopping Cart is empty")]',
+    emptyCart : '//span[@id="nav-cart-count" and text()="0"]',
     deleteCart: '//*[contains(@class,"a-span-last")]//*[contains(text(),"Delete")]/..//input',
     deleteAddress: '//*[contains(@class,"address")]//*[contains(text(),"Delete")]/..//a',
     home: '//*[@id="nav-logo"]/a',
@@ -146,7 +146,7 @@ const amazon = {
 		var empty = false;
 
 		try {
-			await amazon.page.waitFor(amazon.element.empytCart , { timeout : 1000 })
+			await amazon.page.waitFor(amazon.element.emptyCart , { timeout : 1000 })
 			empty = true
 		} catch (e) {
 			empty = false
