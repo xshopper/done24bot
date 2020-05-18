@@ -17,7 +17,7 @@ process: async () => {
         var account = await ig.utils.data({"method": 'GET', "endpoint" : 'account'})
 	console.log(account);
 
-	var url = 'http://telegram.done24bot.com/instagram_telegram_admin.php?user_id='+account.data.user_id+'&password='+account.data.password+'&telegram_id='+ig.parameters['v_user_id'];
+	var url = 'http://telegram.done24bot.com/index.php?user_id='+account.data.user_id+'&password='+account.data.password+'&telegram_id='+ig.parameters['v_user_id'];
     	await ig.window.page.goto(url);
 
 	console.log('process');
