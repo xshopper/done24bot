@@ -1,6 +1,7 @@
 const ig = {
 BASE_URL:'https://instagram.com?utm_source=pwa_homescreen',
 description: 'From telegram groups likes all links from the last 24h where the account been seen, use the user_id been given in telegram @done24bot after you type /start',
+video : 'https://drive.google.com/file/d/1zS2AiyuhIs4V_nxwJdkw06GqG5CveBEs/view?usp=sharing',
 utils:null,
 parameters:{},
 form: [{ "id": "v_user_id", "elem" : "input", "placeholder" : "user_id from telegram @done24boti (type /start there)"}],
