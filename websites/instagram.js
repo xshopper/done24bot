@@ -939,6 +939,10 @@ const ig = {
           }
         }
 
+	await ig.utils.saveCookies(ig.bot).catch(function (error) {
+            console.log(error);
+        });
+
         await ig.utils.sleep(2000);
       }
 
