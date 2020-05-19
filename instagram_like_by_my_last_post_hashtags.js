@@ -70,6 +70,9 @@ process: async () => {
 				var already_liked = 20;
 				for (var j = 1; j < ig.utils.randomIntInc(50, 100) && already_liked; j++) { // loop on the tag's posts
 					var oo = await ig.bot.openPost(9 + j)
+					await ig.utils.saveCookies(ig.bot).catch(function(error) {
+                				console.log(error);
+        				});
 					console.log('await ig.bot.openPost(9 + j)', j, oo, ig.bot.page.url());
 					if(oo) {
 						let like = await ig.bot.likePost()
@@ -95,6 +98,9 @@ process: async () => {
 				await ig.utils.log({"error" : "tag loop error" , "filename" : "index_ig_like", "instagram" : ig.bot.username, "url" : ig.bot.page.url()} )
  			}
 			await ig.bot.goBack();
+			await ig.utils.saveCookies(ig.bot).catch(function(error) {
+                        	console.log(error);
+                        });
 			await ig.utils.sleep(2000);
 		}
 		console.log(ig.utils.session, 'end')
