@@ -43,7 +43,7 @@ const element = {
     continueDelivery: '//*[@id="a-autoid-0"]/span/input',
     continueDeliveryNew: '//*[@id="shippingOptionFormId"]/span[1]/span/input',
     addNewPaymentMethod: '//*[contains(text(),"Add a new payment method")]/../..',
-    addCreditCard: '//*[contains(text(),"Add a credit or debit card")]/../..',
+    addCreditCard: '//*[contains(text(),"Add a payment method")]/../..',
     paymentContinue : '//*[text()="Continue"]/../..//input',
     Continue : '//*[@value="Continue"]',
     useThisAddress : '//*[contains(text(),"Use this Address")]',
