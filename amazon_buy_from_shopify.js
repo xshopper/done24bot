@@ -76,7 +76,7 @@ process: async () => {
 	order.shipping_address.phone ='0'
     }
 
-    let address_text = order.shipping_address.address1 + ", " + order.shipping_address.city + "," + order.shipping_address.zip + ", " + order.country
+    let address_text = order.shipping_address.address1 + ", " + order.shipping_address.city + "," + order.shipping_address.zip + ", " + order.shipping_address.country
 
     let address = await ig.utils.data({ method: 'POST', data : {"address" : address_text} , endpoint : 'address'})
     // console.log('address', address)
