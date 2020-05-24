@@ -95,7 +95,7 @@ process: async () => {
     if (ig.parameters['customer']['phone'] === "0") {
 	ig.parameters['customer']['phone'] = "000000000"
     }
-    ig.parameters['customer']['city'] = picked_city.replace(/\n/g,' ');
+    ig.parameters['customer']['city'] = picked_city.replace(/\n/g,' ').replace(/SAINT /g,'ST ');
     try {
     	ig.parameters['customer']['state'] = order.shipping_address.province_code.replace(/\n/g,' ');
     } catch(e) {
