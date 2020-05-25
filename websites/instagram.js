@@ -939,7 +939,7 @@ const ig = {
           }
         }
 
-	await ig.utils.saveCookies(ig.bot).catch(function (error) {
+	await ig.utils.saveCookies(ig).catch(function (error) {
             console.log(error);
         });
 
