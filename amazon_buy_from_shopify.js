@@ -3,9 +3,12 @@ BASE_URL:'https://www.amazon.com.au',
 description: 'Connect to shopify, search in amazon.com.au for the barcode and puchase the product for the shopify customer',
 window:null,
 utils:null,
+pluginmanager:null,
 bot : null,
 lodash : null,
 parameters:null,
+url : null,
+querystring : null,
 form: [{ "id": "shopify_url", "elem" : "input", "placeholder" : "shopify_url with username/password"}
 	,{ "id": "card_name", "elem" : "input", "placeholder" : "Name on Credit card"}
 	,{ "id": "card_nr", "elem" : "input", "placeholder" : "Credit card Number"} 
@@ -18,11 +21,24 @@ form: [{ "id": "shopify_url", "elem" : "input", "placeholder" : "shopify_url wit
 
 init: async() => {
 	console.log('init...');
-	ig.bot =  await ig.utils.requireFromURL('https://raw.githubusercontent.com/xshopper/done24bot/master/websites/amazon.com.au.js')
+	console.log('installing required packages...')
+	
+	//ig.bot =  await ig.utils.requireFromURL('https://raw.githubusercontent.com/xshopper/done24bot/master/websites/amazon.com.au.js')
+	ig.bot = require('/Users/gbacskai/Documents/done24bot/websites/amazon.com.au.js')
 	ig.bot.utils = ig.utils;
 
-	ig.lodash = await ig.utils.requireFromURL('https://raw.githubusercontent.com/lodash/lodash/4.17.15-npm/lodash.js');
-	
+	try {
+          await ig.pluginmanager.install("url");
+          ig.bot.url = await ig.pluginmanager.require("url");
+
+          await ig.pluginmanager.install("querystring");
+          ig.bot.querystring = await ig.pluginmanager.require("querystring");
+        } catch(e) {
+          console.log(e)
+        }
+
+	await ig.pluginmanager.install("lodash");
+	ig.lodash = await ig.pluginmanager.require("lodash");
 },
 
 process: async () => {
@@ -119,6 +135,7 @@ process: async () => {
     	console.log('buy', ig.parameters);
     	var url = await ig.bot.buyProducts(ig.parameters);
 	if(url) {
+		console.log(url);
 	    	let full = await shopify.setFullfillment(ig.parameters.order_id, url);
 		await ig.utils.saveCookies(ig.bot).catch(function(error) {
                 	console.log(error);

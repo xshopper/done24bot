@@ -67,6 +67,8 @@ const amazon = {
     parameters : null,
     utils:null,
     element,
+    querystring:null,
+    url:null,
 
     checkLogin: async (in_timeout) => {
 	console.log('checkLogin', in_timeout);
@@ -347,8 +349,13 @@ const amazon = {
         await amazon.utils.wait(4000, amazon);
 	await amazon.utils.click(amazon, amazon.element.placeYourOrder, 1000);
 	await amazon.utils.wait(4000, amazon);
-	await amazon.utils.click(amazon, amazon.element.reviewOrder, 1000);
-	await amazon.utils.wait(4000, amazon);
+
+	var orderId = amazon.querystring.parse(amazon.url.parse(amazon.page.url()).query).orderId
+	console.log('orderId:', orderId);
+	await amazon.page.goto('https://www.amazon.com.au/gp/css/summary/edit.html/ref=typ_rev_edit?ie=UTF8&orderID='+orderId);
+
+	//await amazon.utils.click(amazon, amazon.element.reviewOrder, 1000);
+	//await amazon.utils.wait(4000, amazon);
 	await amazon.utils.click(amazon, amazon.element.trackShipment, 1000);
         await amazon.utils.wait(4000, amazon);
 
