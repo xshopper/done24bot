@@ -23,8 +23,8 @@ init: async() => {
 	console.log('init...');
 	console.log('installing required packages...')
 	
-	//ig.bot =  await ig.utils.requireFromURL('https://raw.githubusercontent.com/xshopper/done24bot/master/websites/amazon.com.au.js')
-	ig.bot = require('/Users/gbacskai/Documents/done24bot/websites/amazon.com.au.js')
+	ig.bot =  await ig.utils.requireFromURL('https://raw.githubusercontent.com/xshopper/done24bot/master/websites/amazon.com.au.js')
+	// ig.bot = require('/Users/gbacskai/Documents/done24bot/websites/amazon.com.au.js')
 	ig.bot.utils = ig.utils;
 
 	try {
@@ -95,7 +95,7 @@ process: async () => {
     let address_text = order.shipping_address.address1 + ", " + order.shipping_address.city + "," + order.shipping_address.zip + ", " + order.shipping_address.country
 
     let address = await ig.utils.data({ method: 'POST', data : {"address" : address_text} , endpoint : 'address'})
-    // console.log('address', address)
+    console.log('address:', address)
 
     var picked_zip = ig.lodash.filter(address[0].address_components, { "types" : [ 'postal_code' ] } )[0].long_name.replace(/\n/g,' ');
     try {
