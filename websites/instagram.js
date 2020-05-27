@@ -613,9 +613,9 @@ const ig = {
     ig.cancelMessage();
     console.log('openComments', ig.page.url());
     try {
-      const commentButton = await ig.page.waitFor(ig.elements.postComment, { timeout: 3000 });
+      const commentButton = await ig.page.waitFor(ig.elements.postComment, { timeout: 6000 });
       await commentButton.click();
-      await ig.page.waitFor(ig.elements.textComments, { timeout: 3000 });
+      await ig.page.waitFor(ig.elements.textComments, { timeout: 6000 });
       return true;
     } catch (e) {
       await ig.utils.log({ "error": "openComments", "url": ig.page.url() })
