@@ -58,7 +58,7 @@ const element = {
     reviewOrder: '//*[text()[contains(.,"Review")]]',
     trackShipment : '//*[text()[contains(.,"Track shipment")]]',
     amazonCartIsEmpty : '//*[contains(text(),"Your Amazon cart is empty")]',
-    orderedText : '//*[contains(text(),"Ordered")]'
+    orderedText : '//*[contains(text(),"Ordered today")]'
 }
 
 
