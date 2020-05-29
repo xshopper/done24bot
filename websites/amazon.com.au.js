@@ -38,7 +38,7 @@ const element = {
     home: '//*[@id="nav-logo"]/a',
     closeAppModal: '//*[@id="afap-interstitial-dlg"]/div[5]/div/span/a',
     cartItemNumber: '//*[@id="nav-button-cart"]/div/span',
-    saveGiftOption: '//input[@data-testid="GiftOptions_saveButton"]',
+    saveGiftOption: '//*[contains(@class,"gift-options-button")]//input',
     addGiftOptions : '//*[contains(text(),"Add gift options")]//..',
     continueDelivery: '//*[@id="a-autoid-0"]/span/input',
     continueDeliveryNew: '//*[@id="shippingOptionFormId"]/span[1]/span/input',
