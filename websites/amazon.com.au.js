@@ -340,10 +340,16 @@ const amazon = {
 		await amazon.utils.click(amazon,amazon.element.Continue,1000);
 		await amazon.utils.wait(2000, amazon);
 		try {	
-			await amazon.page.waitFor(amazon,amazon.element.continueDelivery, { timeout : 1000} );
+			await amazon.page.waitFor(amazon,amazon.element.continueDelivery, { timeout : 500} );
 			a = true
 		} catch (e) {
 		}
+
+		try {
+		        await amazon.utils.click(amazon, amazon.element.addNewPaymentMethod, 500);
+			a = true
+		} catch (e) {
+                } 
 	}
 	
 
