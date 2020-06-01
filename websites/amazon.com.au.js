@@ -334,8 +334,15 @@ const amazon = {
 	
 	await amazon.utils.click(amazon,amazon.element.saveGiftOption,1000);
 	await amazon.utils.wait(4000, amazon);
-	await amazon.utils.click(amazon,amazon.element.Continue,1000);
-	await amazon.utils.wait(2000, amazon);
+
+	var a = false
+	while(!a) {
+		await amazon.utils.click(amazon,amazon.element.Continue,1000);
+		await amazon.utils.wait(2000, amazon);
+		a = await amazon.page.waitFor(amazon,amazon.element.continueDelivery, { timeout : 1000} );
+	}
+	
+
 //	await amazon.utils.click(amazon,amazon.element.continueDelivery,1000);
 //	await amazon.utils.click(amazon,amazon.element.continueDeliveryNew,1000);
 
