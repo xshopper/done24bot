@@ -339,7 +339,11 @@ const amazon = {
 	while(!a) {
 		await amazon.utils.click(amazon,amazon.element.Continue,1000);
 		await amazon.utils.wait(2000, amazon);
-		a = await amazon.page.waitFor(amazon,amazon.element.continueDelivery, { timeout : 1000} );
+		try {	
+			await amazon.page.waitFor(amazon,amazon.element.continueDelivery, { timeout : 1000} );
+			a = true
+		} catch (e) {
+		}
 	}
 	
 
