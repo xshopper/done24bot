@@ -339,16 +339,12 @@ const amazon = {
 	while(!a) {
 		await amazon.utils.click(amazon,amazon.element.Continue,1000);
 		await amazon.utils.wait(2000, amazon);
-		try {	
-			await amazon.page.waitFor(amazon,amazon.element.continueDelivery, { timeout : 500} );
-			a = true
-		} catch (e) {
-		}
 
 		try {
-		        await amazon.page.waitFor(amazon, amazon.element.addNewPaymentMethod, { timeout : 500});
-			a = true
+		        await amazon.page.waitFor(amazon.element.addNewPaymentMethod, { timeout : 500});
+			a = true;
 		} catch (e) {
+			console.log(e)
                 } 
 	}
 	
