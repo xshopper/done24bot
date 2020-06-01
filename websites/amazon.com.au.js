@@ -346,16 +346,12 @@ const amazon = {
 		}
 
 		try {
-		        await amazon.utils.click(amazon, amazon.element.addNewPaymentMethod, 500);
+		        await amazon.page.waitFor(amazon, amazon.element.addNewPaymentMethod, { timeout : 500});
 			a = true
 		} catch (e) {
                 } 
 	}
 	
-
-//	await amazon.utils.click(amazon,amazon.element.continueDelivery,1000);
-//	await amazon.utils.click(amazon,amazon.element.continueDeliveryNew,1000);
-
         await amazon.utils.wait(4000, amazon);
 	await amazon.utils.click(amazon, amazon.element.addNewPaymentMethod, 1000);
         await amazon.utils.wait(4000, amazon);
