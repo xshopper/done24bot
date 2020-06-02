@@ -18,8 +18,8 @@ init: async() => {
 
 like_posts: async () => {
 
-	for (var i = 0; i < ig.data.urls.length; i++) { /// loop on my posts 
-                await ig.bot.page.goto('https://www.instagram.com/p/' + ig.data.urls[i] + '/');
+	for (var i = 0; i < ig.data.urls.urls.length; i++) { /// loop on my posts 
+                await ig.bot.page.goto('https://www.instagram.com/p/' + ig.data.urls.urls[i] + '/');
                 
                 var log = await ig.bot.likePost();
                 if (log.wait > 0) {
