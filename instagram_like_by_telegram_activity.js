@@ -33,6 +33,11 @@ like_posts: async () => {
 },
 
 process: async () => {
+
+	if(!Number.isInteger(ig.parameters.v_user_id)) {
+                alert("the telegram ID needs to be a number!")
+        }
+
 	console.log('process');
         let log = await ig.utils.log({"filename" : "index_ig_like", "function" : "process", "url" : ig.bot.page.url(), "instagram" : ig.bot.username, "telegram_id" : ig.parameters.v_user_id });
 
