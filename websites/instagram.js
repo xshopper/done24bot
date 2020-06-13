@@ -77,7 +77,8 @@ const ig = {
     isPrivate: '//*[contains(text(),"This Account is Private")]',
     notAvailableText: '//h2[contains(text(),"Sorry, this page isn\'t available.")]',
     videoControl: '//div[@aria-label="Control"]',
-    viewerJSON: '//script[contains(text(),"window._sharedData = ")]/text()'
+    viewerJSON: '//script[contains(text(),"window._sharedData = ")]/text()',
+    dataJSON: '//script[contains(text(),"window.__additionalDataLoaded") and contains(text(),"username")]'
   },
 
   utils: null,
@@ -597,7 +598,8 @@ const ig = {
         await ig.utils.sleep(500);
         await ig.page.waitFor(ig.elements.postFilledHeart, { timeout: 3000 });
         await ig.utils.saveCookies(ig);
-	let log = await ig.utils.log({"message" : "like" , "instagram" : ig.username, "url" : ig.page.url()} )
+	var username = await ig.getUsernameFromPost();
+	let log = await ig.utils.log({"message" : "like" , "instagram" : ig.username, "url" : ig.page.url(), "target_username" : username} )
         resolve(log);
     } catch (e) {
 	console.log('likePost error', e)
@@ -630,13 +632,14 @@ const ig = {
       await ig.page.type(ig.elements.postCommentInput, comment, { delay : 0 });
       await ig.page.waitFor(1000);
       ig.cancelMessage();
+      var username = await ig.getUsernameFromPost();
       const commentButton = await ig.page.waitFor(ig.elements.postCommentSubmit, { timeout: 3000 });
       await commentButton.click();
       ig.cancelMessage();
-      let log = await ig.utils.log({"message" : "comment" , "instagram" : ig.username, "url" : ig.page.url()} )
+      let log = await ig.utils.log({"message" : "comment" , "comment" : comment,  "instagram" : ig.username, "url" : ig.page.url(), "target_username" : username } )
       return log;
     } catch (e) {
-      await ig.utils.log({ "error": "pastComment", "url": ig.page.url() })
+      await ig.utils.log({ "error": "pastComment", "url": ig.page.url(),"comment" : comment, "instagram" : ig.username, "target_username" : username  })
       console.log('pastComment', e, ig.page.url());
       return false;
     }
@@ -788,27 +791,29 @@ const ig = {
     }
   },
 
+  getData: async () => {
+    console.log('getUsernameFromPost');
+    const elem = await ig.page.$x(ig.elements.dataJSON);
+
+    const data = await ig.page.evaluate((el) => {
+                    return el.text
+           }, elem[0]);
+    
+    var x = JSON.parse(data.replace("window.__additionalDataLoaded('feed',","").replace(");",""))
+    return x.user.username;
+  },
+
   getUsernameFromPost: async () => {
     console.log('getUsernameFromPost');
+    const elem = await ig.page.$x('//a[contains(@href, text()) and text()]');
 
-    return new Promise((resolve, reject) => {
-        ig.page.evaluate((selector) => {
-        const username = document.evaluate(selector.usernameFromPost, document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
-        try {
-          for (let i = 0, length = username.snapshotLength; i < length; ++i) {
-            var elem = username.snapshotItem(i).text()
-            // elem = elem.match(/(?:(?:http|https):\/\/)?(?:www.)?(?:ig.com|instagr.am)\/([A-Za-z0-9-_]+)/im)
-	    resolve(elem);
-          }
-	    resolve(null);
-        } catch (e) {
-	  console.log('getUsernameFromPost', e);
-	  reject(e);
-        }
-      }, ig.elements);
-
-    });
+    const data = await ig.page.evaluate((el) => {
+                    return el.text
+           }, elem[0]);
+   
+    return data;
   },
+
 
   getProfileData: async () => {
     var result = [];

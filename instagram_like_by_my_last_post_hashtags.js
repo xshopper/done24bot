@@ -95,7 +95,7 @@ process: async () => {
 					}
 				}
 			} catch (e) {
-				await ig.utils.log({"error" : "tag loop error" , "filename" : "index_ig_like", "instagram" : ig.bot.username, "url" : ig.bot.page.url()} )
+				await ig.utils.log({"error" : "tag loop error " + e , "filename" : "index_ig_like", "instagram" : ig.bot.username, "url" : ig.bot.page.url()} )
  			}
 			await ig.bot.goBack();
 			await ig.utils.saveCookies(ig.bot).catch(function(error) {
