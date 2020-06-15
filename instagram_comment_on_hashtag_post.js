@@ -58,8 +58,9 @@ const ig = {
                                	 	await ig.utils.sleep(log.wait);
                         	}
 			}
+
+                	await ig.bot.goBack();
 		}
-                await ig.bot.goBack();
             });
             return;
         } catch (e) {
