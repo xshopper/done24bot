@@ -34,7 +34,7 @@ like_posts: async () => {
 
 process: async () => {
 
-	if(!Number.isInteger(ig.parameters.v_user_id)) {
+	if(!Number.isInteger(parseInt(ig.parameters.v_user_id))) {
                 alert("the telegram ID needs to be a number!")
         }
 

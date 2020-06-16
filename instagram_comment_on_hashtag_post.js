@@ -1,6 +1,6 @@
 const ig = {
     BASE_URL: 'https://instagram.com?utm_source=pwa_homescreen',
-    description: 'Send comment to a specific hastags on the recent posts.',
+    description: 'Send comment to a specific hastags on the recent posts. Does not send comment twice in the last 3 months.',
     window: null,
     utils: null,
     bot: null,
