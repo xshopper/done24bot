@@ -24,7 +24,6 @@ init: async() => {
 	console.log('installing required packages...')
 	
 	ig.bot =  await ig.utils.requireFromURL('https://raw.githubusercontent.com/xshopper/done24bot/master/websites/amazon.com.au.js')
-	// ig.bot = require('/Users/gbacskai/Documents/done24bot/websites/amazon.com.au.js')
 	ig.bot.utils = ig.utils;
 
 	try {
@@ -70,7 +69,7 @@ process: async () => {
 
   var order = shopify_orders.orders[order_nr];
 
-  if (order.tags === 'amazon.com.au') {
+  if (order.tags === 'amazonau') {
 
     ig.parameters.order_id = order.id;
     console.log('order number', order.order_number)

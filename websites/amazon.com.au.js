@@ -332,23 +332,53 @@ const amazon = {
 			break; }
 	}
 	
+
+	await amazon.utils.click(amazon,amazon.element.Continue,1000);
+        await amazon.utils.wait(2000, amazon);
+
 	await amazon.utils.click(amazon,amazon.element.saveGiftOption,1000);
 	await amazon.utils.wait(4000, amazon);
 
+
+	var last4Digits = amazon.parameters.buyer.cardNumber.slice(-4);
+	var cardSelector = '//span[@data-number="'+ last4Digits +'"]';
+        var radioButton = '//div[contains(@class,"pmts-credit-card-row") and .'+ cardSelector+']';
 	var a = false
 	while(!a) {
 		await amazon.utils.click(amazon,amazon.element.Continue,1000);
 		await amazon.utils.wait(2000, amazon);
 
 		try {
-		        await amazon.page.waitFor(amazon.element.addNewPaymentMethod, { timeout : 500});
+			await amazon.page.waitFor(cardSelector, { timeout : 100} );
+			await amazon.page.evaluate((radioButton) => { 
+			    	var radio = document.evaluate(radioButton, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+				radio.click();
+			}, radioButton); 
 			a = true;
 		} catch (e) {
 			console.log(e)
                 } 
 	}
+
+	var selectorCardnumber = '//*[contains(@placeholder,"ending in '+ last4Digits +'")]';
+	await amazon.page.evaluate((selectorCardnumber, cardNumber) => {
+		var objCardNr = document.evaluate(selectorCardnumber, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+		objCardNr.value = cardNumber;	
+
+	}, selectorCardnumber, amazon.parameters.buyer.cardNumber)
 	
-        await amazon.utils.wait(4000, amazon);
+	await amazon.utils.click(amazon,'//*[contains(@placeholder,"ending in ' + last4Digits + '")]/../../..//button[contains(text(),"Verify card")]',1000);
+        await amazon.utils.wait(2000, amazon);
+
+
+	await amazon.utils.click(amazon,'//*[contains(@name,"ppw-widgetEvent:SetPaymentPlanSelectContinueEvent")]',1000);
+	await amazon.utils.wait(2000, amazon);
+
+	await amazon.utils.click(amazon,'//*[contains(text(),"Use this Address")]',1000);
+
+        /*
+	
+	await amazon.utils.wait(4000, amazon);
 	await amazon.utils.click(amazon, amazon.element.addNewPaymentMethod, 1000);
         await amazon.utils.wait(4000, amazon);
 	await amazon.utils.click(amazon, amazon.element.addCreditCard, 1000);
@@ -356,6 +386,10 @@ const amazon = {
 	await amazon.setCreditCard();
 	await amazon.utils.click(amazon, amazon.element.paymentContinue,1000);
         await amazon.utils.wait(4000, amazon);
+
+	*/
+
+	await amazon.utils.wait(4000, amazon);
 	await amazon.utils.click(amazon, amazon.element.placeYourOrder, 1000);
 	await amazon.utils.wait(8000, amazon);
 
@@ -378,15 +412,27 @@ const amazon = {
     },
 
     setCreditCard: async () => {
-	await amazon.page.waitFor(amazon.element.nameOnCard)
+
+	await amazon.page.evaluate((a, b) => {console.log(a,b);document.querySelector(a).value = b;}, amazon.element.nameOnCard, amazon.parameters.buyer.nameOnCard);
+	await amazon.page.evaluate((a, b) => {document.querySelector(a).value = b;}, amazon.element.cardNumber, amazon.parameters.buyer.cardNumber);
+
+	await amazon.page.evaluate((sel,value) => {
+  		const example = document.querySelector(sel);
+  		const example_options = example.querySelectorAll('option');
+  		const selected_option = example_options.find(option => option.text === val);
+
+  		selected_option.selected = true;
+	}, amazon.element.selectExpMonth, amazon.parameters.buyer.expireMonth);
 
 
-        await amazon.page.type(amazon.element.nameOnCard, amazon.parameters.buyer.nameOnCard, { delay: 1 });
-        await amazon.page.type(amazon.element.cardNumber, amazon.parameters.buyer.cardNumber, { delay: 1 });
-	var expMonth = await amazon.page.waitFor(amazon.element.selectExpMonth);
-	expMonth.select(amazon.parameters.buyer.expireMonth);
-	var expYear = await amazon.page.waitFor(amazon.element.selectExpYear);
-        expYear.select(amazon.parameters.buyer.expireYear)
+	await amazon.page.evaluate((sel,value) => {
+		  const example = document.querySelector(sel);
+		  const example_options = example.querySelectorAll('option');
+		  const selected_option = example_options.find(option => option.text === val);
+
+		  selected_option.selected = true;
+	}, amazon.element.expireYear, amazon.parameters.buyer.expireYear);
+
 	await amazon.utils.click(amazon, amazon.element.addYourCard, 1000)
         await amazon.utils.wait(3000, amazon);
     },
