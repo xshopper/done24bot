@@ -360,6 +360,7 @@ const amazon = {
                 } 
 	}
 
+	await amazon.utils.wait(2000, amazon);
 	var selectorCardnumber = '//*[contains(@placeholder,"ending in '+ last4Digits +'")]';
 	await amazon.page.evaluate((selectorCardnumber, cardNumber) => {
 		var objCardNr = document.evaluate(selectorCardnumber, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
