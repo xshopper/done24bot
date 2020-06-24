@@ -175,10 +175,12 @@ const amazon = {
        		await amazon.page.waitFor(3000);
 		await amazon.utils.click(amazon, amazon.element.searchProductNode, 10000)
 		await amazon.page.waitFor(5000);
-		await amazon.utils.click(amazon, amazon.element.quantity, 1000)
-		await amazon.page.waitFor(5000);
-		await amazon.utils.click(amazon, '//*[contains(@data-value, \'"stringVal":"'+amazon.parameters.products[i].qty+'"\')]', 3000)
-		await amazon.utils.wait(3000, amazon);
+		if(amazon.parameters.products[i].qty>1) {
+			await amazon.utils.click(amazon, amazon.element.quantity, 1000)
+			await amazon.page.waitFor(5000);
+			await amazon.utils.click(amazon, '//*[contains(@data-value, \'"stringVal":"'+amazon.parameters.products[i].qty+'"\')]', 3000)
+			await amazon.utils.wait(3000, amazon);
+		}
 		await amazon.utils.click(amazon, amazon.element.addCartBtn, 10000)
        		await amazon.page.waitFor(5000);
 		await amazon.utils.click(amazon, amazon.element.checkGift, 10000)

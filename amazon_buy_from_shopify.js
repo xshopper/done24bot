@@ -9,12 +9,13 @@ lodash : null,
 parameters:null,
 url : null,
 querystring : null,
+diacritics: null,
 form: [{ "id": "shopify_url", "elem" : "input", "placeholder" : "shopify_url with username/password"}
-	,{ "id": "card_name", "elem" : "input", "placeholder" : "Name on Credit card"}
+//	,{ "id": "card_name", "elem" : "input", "placeholder" : "Name on Credit card"}
 	,{ "id": "card_nr", "elem" : "input", "placeholder" : "Credit card Number"} 
-        ,{ "id": "card_expmonth", "elem" : "input", "placeholder" : "Credit card expire month MM"}
-	,{ "id": "card_expyear", "elem" : "input", "placeholder" : "Credit card Expire year YYYY"}
-	,{ "id": "card_cvv", "elem" : "input", "placeholder" : "Credit Card CVV"}
+//        ,{ "id": "card_expmonth", "elem" : "input", "placeholder" : "Credit card expire month MM"}
+//	,{ "id": "card_expyear", "elem" : "input", "placeholder" : "Credit card Expire year YYYY"}
+//	,{ "id": "card_cvv", "elem" : "input", "placeholder" : "Credit Card CVV"}
 	,{ "id": "amazon_password", "elem" : "input", "placeholder" : "Amazon Password"}
 	,{ "id": "gift_card", "elem" : "input", "placeholder" : "Gift Card"}
 	,{ "id": "gift_from", "elem" : "input", "placeholder" : "Gift From"}  ],
@@ -32,6 +33,9 @@ init: async() => {
 
           await ig.pluginmanager.install("querystring");
           ig.bot.querystring = await ig.pluginmanager.require("querystring");
+
+	  await ig.pluginmanager.install("diacritics");
+	  ig.diacritics = await ig.pluginmanager.require("diacritics");
         } catch(e) {
           console.log(e)
         }
@@ -69,7 +73,7 @@ process: async () => {
 
   var order = shopify_orders.orders[order_nr];
 
-  if (order.tags === 'amazonau') {
+  if (order.tags === 'amazon.com.au') {
 
     ig.parameters.order_id = order.id;
     console.log('order number', order.order_number)
@@ -84,10 +88,15 @@ process: async () => {
 
     ig.parameters['customer'] = {}
 
-    ig.parameters['customer']['name'] = order.shipping_address.first_name.replace(/’/,"") + " " + order.shipping_address.last_name.replace(/’/,"");
-    ig.parameters['customer']['address'] = order.shipping_address.address1.replace(/\n/g,' ');
+    ig.parameters['customer']['name'] = order.shipping_address.first_name.replace(/’/,"").trim() + " " + order.shipping_address.last_name.replace(/’/,"").trim();
+    ig.parameters['customer']['name'] = ig.diacritics.remove(ig.parameters['customer']['name']);
+
+    ig.parameters['customer']['address'] = order.shipping_address.address1.replace(/\n/g,' ').trim();
+    ig.parameters['customer']['address'] = ig.diacritics.remove(ig.parameters['customer']['address']);
+
     if(order.shipping_address.address2 || order.shipping_address.address2 !== null) {
-        ig.parameters['customer']['address2'] = order.shipping_address.address2.replace(/\n/g,' ');
+        ig.parameters['customer']['address2'] = order.shipping_address.address2.replace(/\n/g,' ').trim();
+	ig.parameters['customer']['address2'] = ig.diacritics.remove(ig.parameters['customer']['address2']);
     } else {
 	ig.parameters['customer']['address2'] = ''
     }
