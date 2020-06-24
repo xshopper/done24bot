@@ -41,6 +41,13 @@ const ig = {
 		var instagram_id = await ig.bot.getUsernameFromPost();
                 var logs = await ig.utils.data({ "method": 'GET', "endpoint": 'search/instagram/interaction', "headers": { "instagram_id": instagram_id, "type" : "comment" }})
 
+		let like = await ig.bot.likePost()
+                if(!like) {already_liked--;}
+                if (like && like.wait > 0) {
+                   console.log('wait ' + log.wait)
+                   await ig.utils.sleep(log.wait);
+                }
+
 		if (logs.length ===0) {	
 			//var user = await ig.bot.getUsernameFromPost();
         	        await ig.bot.openComments();
