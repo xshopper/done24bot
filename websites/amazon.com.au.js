@@ -364,15 +364,17 @@ const amazon = {
 
 	await amazon.utils.wait(2000, amazon);
 	var selectorCardnumber = '//*[contains(@placeholder,"ending in '+ last4Digits +'")]';
-	await amazon.page.evaluate((selectorCardnumber, cardNumber) => {
-		var objCardNr = document.evaluate(selectorCardnumber, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-		objCardNr.value = cardNumber;	
+	try {
+		await amazon.page.evaluate((selectorCardnumber, cardNumber) => {
+			var objCardNr = document.evaluate(selectorCardnumber, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+			objCardNr.value = cardNumber;	
 
-	}, selectorCardnumber, amazon.parameters.buyer.cardNumber)
+		}, selectorCardnumber, amazon.parameters.buyer.cardNumber)
 	
-	await amazon.utils.click(amazon,'//*[contains(@placeholder,"ending in ' + last4Digits + '")]/../../..//button[contains(text(),"Verify card")]',1000);
-        await amazon.utils.wait(2000, amazon);
+		await amazon.utils.click(amazon,'//*[contains(@placeholder,"ending in ' + last4Digits + '")]/../../..//button[contains(text(),"Verify card")]',1000);
+        	await amazon.utils.wait(2000, amazon);
 
+	} catch (e) {}
 
 	await amazon.utils.click(amazon,'//*[contains(@name,"ppw-widgetEvent:SetPaymentPlanSelectContinueEvent")]',1000);
 	await amazon.utils.wait(2000, amazon);
