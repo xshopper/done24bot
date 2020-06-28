@@ -47,8 +47,17 @@ const ig = {
                    console.log('wait ' + log.wait)
                    await ig.utils.sleep(log.wait);
                 }
+		try {
+			var x = new Date();
+			var y = new Date(logs[0].date);
+		} catch(e) {
+			var y = new Date('2011-04-11T10:20:30Z');
+		}
 
-		if (logs.length ===0) {	
+		var timeDifference = Math.abs(y.getTime() - x.getTime());
+		var differentDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
+
+		if (differentDays > 14 ) {	
 			//var user = await ig.bot.getUsernameFromPost();
         	        await ig.bot.openComments();
 			try {

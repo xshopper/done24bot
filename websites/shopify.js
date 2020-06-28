@@ -21,6 +21,21 @@ getProduct: async (product_id) => {
         return res;
 },
 
+updateOrder: async (order_id, key , value) => {
+        var myurl = shopify.url + "/orders/" + order_id + ".json"
+	var data  = {"order": {
+	    "id": order_id,
+	    "metafields" = [{
+		"key": key,
+        	"value": value,
+        	"value_type": "string",
+        	"namespace": "global"
+      	} ]};
+	
+        let res = await shopify.utils.httpRequestPost(myurl,  JSON.stringify(data)).catch(function(err) { console.log('error: ', err); })
+	return res	
+},
+
 setFullfillment: async (order_id, url) => {
         var myurl = shopify.url + "/orders/" + order_id + "/fulfillments.json"
 	var fullfillment = { "fulfillment": { "tracking_urls": [ url ], "notify_customer": true , "location_id" : 18490556512} }

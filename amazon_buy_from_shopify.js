@@ -10,6 +10,7 @@ parameters:null,
 url : null,
 querystring : null,
 diacritics: null,
+user_name:null,
 form: [{ "id": "shopify_url", "elem" : "input", "placeholder" : "shopify_url with username/password"}
 //	,{ "id": "card_name", "elem" : "input", "placeholder" : "Name on Credit card"}
 	,{ "id": "card_nr", "elem" : "input", "placeholder" : "Credit card Number"} 
@@ -62,91 +63,100 @@ process: async () => {
 
 	console.log('load shopify orders')
 	var since_id = 0;
-    	var shopify_orders = await shopify.getOrders('limit=250&since_id='+since_id+'&status=open&fulfillment_status=unshipped');
+ while(true) {
+    	var shopify_orders = await shopify.getOrders('limit=1&since_id='+since_id+'&status=open&fulfillment_status=unshipped');
 
     if(!shopify_orders.orders.length) {
         console.log('no more orders')
         return;
     }
 
+    
+
  for(var order_nr=0;order_nr<shopify_orders.orders.length;order_nr++) {
 
-  var order = shopify_orders.orders[order_nr];
+    since_id = shopify_orders.orders[order_nr].id; 
 
-  if (order.tags === 'amazon.com.au') {
+    var order = shopify_orders.orders[order_nr];
 
-    ig.parameters.order_id = order.id;
-    console.log('order number', order.order_number)
+    await shopify.updateOrder (since_id, "purchaser" , ig.utils.user_id )
+    var now = new Date();
+    await shopify.updateOrder (since_id, "purchase_start" , now.toISOString() )
 
-    ig.parameters.products = []
+    if (order.tags === 'amazon.com.au') {
 
-    for(var o=0;o<order.line_items.length;o++) {
+      ig.parameters.order_id = order.id;
+      console.log('order number', order.order_number)
+
+      ig.parameters.products = []
+
+      for(var o=0;o<order.line_items.length;o++) {
 	var p = await shopify.getProduct(order.line_items[o].product_id)
 	console.log(p)
 	ig.parameters['products'].push( {"barcode" : p.products[0].variants[0].barcode , "qty" : order.line_items[o].quantity })
-    }
+      }
 
-    ig.parameters['customer'] = {}
+      ig.parameters['customer'] = {}
 
-    ig.parameters['customer']['name'] = order.shipping_address.first_name.replace(/’/,"").trim() + " " + order.shipping_address.last_name.replace(/’/,"").trim();
-    ig.parameters['customer']['name'] = ig.diacritics.remove(ig.parameters['customer']['name']);
+      ig.parameters['customer']['name'] = order.shipping_address.first_name.replace(/’/,"").trim() + " " + order.shipping_address.last_name.replace(/’/,"").trim();
+      ig.parameters['customer']['name'] = ig.diacritics.remove(ig.parameters['customer']['name']);
 
-    ig.parameters['customer']['address'] = order.shipping_address.address1.replace(/\n/g,' ').trim();
-    ig.parameters['customer']['address'] = ig.diacritics.remove(ig.parameters['customer']['address']);
+      ig.parameters['customer']['address'] = order.shipping_address.address1.replace(/\n/g,' ').trim();
+      ig.parameters['customer']['address'] = ig.diacritics.remove(ig.parameters['customer']['address']);
 
-    if(order.shipping_address.address2 || order.shipping_address.address2 !== null) {
+      if(order.shipping_address.address2 || order.shipping_address.address2 !== null) {
         ig.parameters['customer']['address2'] = order.shipping_address.address2.replace(/\n/g,' ').trim();
 	ig.parameters['customer']['address2'] = ig.diacritics.remove(ig.parameters['customer']['address2']);
-    } else {
+      } else {
 	ig.parameters['customer']['address2'] = ''
-    }
-    if(!order.shipping_address.phone) {
-	order.shipping_address.phone ='0'
-    }
+      }
+      if(!order.shipping_address.phone) {
+  	  order.shipping_address.phone ='0'
+      }
 
-    let address_text = order.shipping_address.address1 + ", " + order.shipping_address.city + "," + order.shipping_address.zip + ", " + order.shipping_address.country
+      let address_text = order.shipping_address.address1 + ", " + order.shipping_address.city + "," + order.shipping_address.zip + ", " + order.shipping_address.country
 
-    let address = await ig.utils.data({ method: 'POST', data : {"address" : address_text} , endpoint : 'address'})
-    console.log('address:', address)
-    try {
+      let address = await ig.utils.data({ method: 'POST', data : {"address" : address_text} , endpoint : 'address'})
+      console.log('address:', address)
+      try {
 	    var picked_zip = ig.lodash.filter(address[0].address_components, { "types" : [ 'postal_code' ] } )[0].long_name.replace(/\n/g,' ');
-    } catch(e) {
+      } catch(e) {
 	    var picked_zip = ig.lodash.filter(address[1].address_components, { "types" : [ 'postal_code' ] } )[0].long_name.replace(/\n/g,' ');
-    }
-    try {
+      }
+      try {
     	var picked_city = ig.lodash.filter(address[0].address_components, { "types" : [ 'locality', 'political' ] } )[0].long_name.toUpperCase().replace(/\n/g,' ');
-    } catch(e) {
+      } catch(e) {
         var picked_city = ig.lodash.filter(address[0].address_components, { "types" : [ 'postal_town' ] } )[0].long_name.toUpperCase().replace(/\n/g,' ');
-    }
-    var picked_country = ig.lodash.filter(address[0].address_components, { "types" : [ 'country', 'political' ] } )[0].long_name.replace(/\n/g,' ');
+      }
+      var picked_country = ig.lodash.filter(address[0].address_components, { "types" : [ 'country', 'political' ] } )[0].long_name.replace(/\n/g,' ');
 
-    // console.log('found address', address[0]);
+      // console.log('found address', address[0]);
 
-    ig.parameters['customer']['phone'] = order.shipping_address.phone.replace('+61','0');
-    if (ig.parameters['customer']['phone'] === "0") {
+      ig.parameters['customer']['phone'] = order.shipping_address.phone.replace('+61','0');
+      if (ig.parameters['customer']['phone'] === "0") {
 	ig.parameters['customer']['phone'] = "000000000"
-    }
-    ig.parameters['customer']['city'] = picked_city.replace(/\n/g,' ').replace(/SAINT /g,'ST ');
-    try {
+      }
+      ig.parameters['customer']['city'] = picked_city.replace(/\n/g,' ').replace(/SAINT /g,'ST ');
+      try {
     	ig.parameters['customer']['state'] = order.shipping_address.province_code.replace(/\n/g,' ');
-    } catch(e) {
+      } catch(e) {
 	ig.parameters['customer']['state'] = '';
-    }
-    ig.parameters['customer']['postcode'] = picked_zip;
-    ig.parameters['customer']['country'] = picked_country;
-    ig.parameters['giftcard'] = ig.parameters.giftcard + " Order:" + order.order_number,
+      }
+      ig.parameters['customer']['postcode'] = picked_zip;
+      ig.parameters['customer']['country'] = picked_country;
+      ig.parameters['giftcard'] = ig.parameters.giftcard + " Order:" + order.order_number,
 
-    ig.parameters['buyer'] = {}
-    ig.parameters['buyer']['nameOnCard'] = ig.parameters.card_name;
-    ig.parameters['buyer']['cardNumber'] = ig.parameters.card_nr;
-    ig.parameters['buyer']['expireMonth'] = ig.parameters.card_expmonth;
-    ig.parameters['buyer']['expireYear'] = ig.parameters.card_expyear;
-    ig.parameters['buyer']['cvv'] = ig.parameters.card_cvv;
+      ig.parameters['buyer'] = {}
+      ig.parameters['buyer']['nameOnCard'] = ig.parameters.card_name;
+      ig.parameters['buyer']['cardNumber'] = ig.parameters.card_nr;
+      ig.parameters['buyer']['expireMonth'] = ig.parameters.card_expmonth;
+      ig.parameters['buyer']['expireYear'] = ig.parameters.card_expyear;
+      ig.parameters['buyer']['cvv'] = ig.parameters.card_cvv;
 
-    ig.parameters.giftcard = ig.parameters.gift_card + "order:" + order.order_number;
-    ig.parameters.giftfrom = ig.parameters.gift_from;
+      ig.parameters.giftcard = ig.parameters.gift_card + "order:" + order.order_number;
+      ig.parameters.giftfrom = ig.parameters.gift_from;
 
-    if(picked_country === 'Australia') {
+      if(picked_country === 'Australia') {
     	console.log('buy', ig.parameters);
     	var url = await ig.bot.buyProducts(ig.parameters);
 	if(url) {
@@ -158,6 +168,7 @@ process: async () => {
 	} else {
 		console.log("Ordered is not appeared:", ig.parameters.order_id );
 	}
+     }
     }
    }
   }
