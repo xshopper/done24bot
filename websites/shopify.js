@@ -25,12 +25,12 @@ updateOrder: async (order_id, key , value) => {
         var myurl = shopify.url + "/orders/" + order_id + ".json"
 	var data  = {"order": {
 	    "id": order_id,
-	    "metafields" = [{
+	    "metafields" : [{
 		"key": key,
         	"value": value,
         	"value_type": "string",
         	"namespace": "global"
-      	} ]};
+      	} ]}};
 	
         let res = await shopify.utils.httpRequestPost(myurl,  JSON.stringify(data)).catch(function(err) { console.log('error: ', err); })
 	return res	
