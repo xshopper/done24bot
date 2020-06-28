@@ -32,7 +32,7 @@ updateOrder: async (order_id, key , value) => {
         	"namespace": "global"
       	} ]}};
 	
-        let res = await shopify.utils.httpRequestPost(myurl,  JSON.stringify(data)).catch(function(err) { console.log('error: ', err); })
+        let res = await shopify.utils.httpRequestPut(myurl,  JSON.stringify(data)).catch(function(err) { console.log('error: ', err); })
 	return res	
 },
 
