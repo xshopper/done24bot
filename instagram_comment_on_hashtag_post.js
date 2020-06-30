@@ -44,8 +44,8 @@ const ig = {
 		let like = await ig.bot.likePost()
                 if(!like) {already_liked--;}
                 if (like && like.wait > 0) {
-                   console.log('wait ' + log.wait)
-                   await ig.utils.sleep(log.wait);
+                   console.log('wait ' + like.wait)
+                   await ig.utils.sleep(like.wait);
                 }
 		try {
 			var x = new Date();
