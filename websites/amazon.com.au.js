@@ -200,7 +200,7 @@ const amazon = {
 
             await amazon.page.waitFor(1000);
 
-            await amazon.page.waitFor(amazon.element.checkoutPassword);
+            await amazon.page.waitFor(amazon.element.checkoutPassword, { timeout : 5000 });
             await amazon.page.type(amazon.element.checkoutPassword, amazon.parameters.amazon_password, { delay: 1 });
 
             await amazon.page.waitFor(1000);
@@ -212,7 +212,7 @@ const amazon = {
                 checkoutPasswordSubmit && checkoutPasswordSubmit.click();
             }, amazon.element);
         } catch (err) {
-            console.error(err);
+            console.error("No password needed");
         }
 
 	var addressEmpty = false;
