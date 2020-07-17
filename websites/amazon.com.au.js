@@ -21,14 +21,14 @@ const element = {
     deliveryAddress: '//*[contains(text(),"Delivery address")]/..//div',
     placeYourOrder: '//*[contains(text(),"Place your order")]',
     addNewAddress: '//*[contains(text(),"Add a New Address")]',
-    inputFullname: 'input[id="enterAddressFullName"]',
-    inputPhoneno: 'input[id="enterAddressPhoneNumber"]',
-    inputAddress: 'input[id="enterAddressAddressLine1"]',
-    inputAddress2: 'input[id="enterAddressAddressLine2"]',
-    inputPostcode: 'input[id="enterAddressPostalCode"]',
+    inputFullname: 'input[id="address-ui-widgets-enterAddressFullName"]',
+    inputPhoneno: 'input[id="address-ui-widgets-enterAddressPhoneNumber"]',
+    inputAddress: 'input[id="address-ui-widgets-enterAddressLine1"]',
+    inputAddress2: 'input[id="address-ui-widgets-enterAddressLine2"]',
+    inputPostcode: 'input[id="address-ui-widgets-enterAddressPostalCode"]',
     inputCity: 'input[id="enterAddressCityText"]',
     inputState: 'input[id="enterAddressStateOrRegionText"]',
-    submitAddress: '//*[@id="address-new"]/div/span/form/span/span/input',
+    submitAddress: '//*[@id="address-ui-widgets-form-submit-button-announce"]/../input',
     gifTextarea: '#message-area-0',
     gifTextareaEle: '//*[@id="message-area-0"]',
     cart: '//*[@aria-label="Cart"]',
@@ -52,7 +52,7 @@ const element = {
     selectExpMonth: 'select[name="ppw-expirationDate_month"]',
     selectExpYear: 'select[name="ppw-expirationDate_year"]',
     quantity: '//*[contains(text(),"Qty:")]',
-    citySuburbTown: '//*[contains(text(),"City/Suburb/Town")]',
+    citySuburbTown: '//*[contains(text(),"Choose city or suburb")]',
     addYourCard: '//*[contains(text(),"Add your card")]/..//input',
     placeYourOrder: '//*[contains(text(),"Place your order")]/..//input',
     reviewOrder: '//*[text()[contains(.,"Review")]]',
@@ -273,7 +273,7 @@ const amazon = {
 	try {
 		await amazon.page.waitFor(2000);
 		await amazon.page.waitFor(amazon.element.citySuburbTown);
-                await amazon.utils.click(amazon, '//*[@id="enterAddressCitySelectContainer"]//*[@role="button"]' , 1000);
+                await amazon.utils.click(amazon, '//*[@id="address-ui-widgets-enterAddressCity"]//*[@role="button"]' , 1000);
                 await amazon.page.waitFor(3000);
 		await amazon.utils.click(amazon, '//a[@data-value=\'{"stringVal":"'+amazon.parameters.customer.city+'"}\']', 3000)
 		await amazon.page.waitFor(3000);
