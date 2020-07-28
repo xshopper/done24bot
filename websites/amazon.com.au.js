@@ -58,7 +58,8 @@ const element = {
     reviewOrder: '//*[text()[contains(.,"Review")]]',
     trackShipment : '//*[text()[contains(.,"Track shipment")]]',
     amazonCartIsEmpty : '//*[contains(text(),"Your Amazon cart is empty")]',
-    orderedText : '//*[contains(text(),"Ordered today")]'
+    orderedText : '//*[contains(text(),"Ordered today")]',
+    paymentMethod : '//*[contains(text(),"Payment method")]/..'
 }
 
 
@@ -341,7 +342,12 @@ const amazon = {
 	await amazon.utils.click(amazon,amazon.element.saveGiftOption,1000);
 	await amazon.utils.wait(4000, amazon);
 
-
+	try {
+		await amazon.utils.click(amazon,amazon.element.paymentMethod,1000);
+	        await amazon.utils.wait(2000, amazon);
+	} catch(e) {}
+	
+	
 	var last4Digits = amazon.parameters.buyer.cardNumber.slice(-4);
 	var cardSelector = '//span[@data-number="'+ last4Digits +'"]';
         var radioButton = '//div[contains(@class,"pmts-credit-card-row") and .'+ cardSelector+']';
