@@ -272,10 +272,18 @@ const amazon = {
 	await amazon.page.waitFor(1000);
 
 	try {
-		await amazon.page.waitFor(2000);
-		await amazon.page.waitFor(amazon.element.citySuburbTown);
+                await amazon.page.waitFor(2000);
+                await amazon.page.waitFor(amazon.element.citySuburbTown);
                 await amazon.utils.click(amazon, '//*[@id="address-ui-widgets-enterAddressCity"]//*[@role="button"]' , 1000);
                 await amazon.page.waitFor(3000);
+                await amazon.utils.click(amazon, '//a[@data-value=\'{"stringVal":"'+amazon.parameters.customer.city_original+'"}\']', 3000)
+                await amazon.page.waitFor(3000);
+        } catch(e) {
+                console.log('only one city');
+                console.log(e);
+        }
+
+	try {
 		await amazon.utils.click(amazon, '//a[@data-value=\'{"stringVal":"'+amazon.parameters.customer.city+'"}\']', 3000)
 		await amazon.page.waitFor(3000);
 	} catch(e) {

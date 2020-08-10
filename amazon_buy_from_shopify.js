@@ -123,6 +123,9 @@ process: async () => {
       } catch(e) {
 	    var picked_zip = ig.lodash.filter(address[1].address_components, { "types" : [ 'postal_code' ] } )[0].long_name.replace(/\n/g,' ');
       }
+
+      var city_original = order.shipping_address.city.toUpperCase();
+
       try {
     	var picked_city = ig.lodash.filter(address[0].address_components, { "types" : [ 'locality', 'political' ] } )[0].long_name.toUpperCase().replace(/\n/g,' ');
       } catch(e) {
@@ -137,6 +140,8 @@ process: async () => {
 	ig.parameters['customer']['phone'] = "000000000"
       }
       ig.parameters['customer']['city'] = picked_city.replace(/\n/g,' ').replace(/SAINT /g,'ST ');
+      ig.parameters['customer']['city_original'] = city_original.replace(/\n/g,' ').replace(/SAINT /g,'ST ');
+
       try {
     	ig.parameters['customer']['state'] = order.shipping_address.province_code.replace(/\n/g,' ');
       } catch(e) {
