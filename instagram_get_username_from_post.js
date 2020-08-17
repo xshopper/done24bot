@@ -16,12 +16,6 @@ init: async() => {
 process: async () => {
 	console.log('process');
         let log = await ig.utils.log({"filename" : "index_ig_dummy", "function" : "process", "url" : ig.bot.page.url(), "instagram" : ig.bot.username });
-
-	const loginData = await ig.bot.login();
-
-	await ig.utils.saveCookies(ig.bot).catch(function(error) {
-		console.log(error);
-	});
 	var username = await ig.bot.getUsernameFromPost();
 	console.log(username);
 	return true;
