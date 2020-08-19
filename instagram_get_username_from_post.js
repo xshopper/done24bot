@@ -17,7 +17,11 @@ init: async() => {
 
 process: async () => {
 	console.log('process');
+	try {
 	var username = await ig.bot.getUsernameFromPost();
+	} catch(e) {
+		process.exit(1)
+	}
 	console.log('{"#username#":"'+username+'"}');
 	return username;
 }
