@@ -18,7 +18,7 @@ init: async() => {
 process: async () => {
 	console.log('process');
 	var username = await ig.bot.getUsernameFromPost();
-	console.log({"#post_id#":ig.parameters.post_id, "#username#": username});
+	console.log({#username#: username});
 	return username;
 }
 }
