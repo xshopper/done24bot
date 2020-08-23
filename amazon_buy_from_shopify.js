@@ -129,7 +129,11 @@ process: async () => {
       try {
     	var picked_city = ig.lodash.filter(address[0].address_components, { "types" : [ 'locality', 'political' ] } )[0].long_name.toUpperCase().replace(/\n/g,' ');
       } catch(e) {
-        var picked_city = ig.lodash.filter(address[0].address_components, { "types" : [ 'postal_town' ] } )[0].long_name.toUpperCase().replace(/\n/g,' ');
+        try {
+	        var picked_city = ig.lodash.filter(address[0].address_components, { "types" : [ 'postal_town' ] } )[0].long_name.toUpperCase().replace(/\n/g,' ');
+	} catch (e) {
+		var picked_city = city_original
+	}
       }
       var picked_country = ig.lodash.filter(address[0].address_components, { "types" : [ 'country', 'political' ] } )[0].long_name.replace(/\n/g,' ');
 

@@ -21,7 +21,7 @@ process: async () => {
 		var username = await ig.bot.getUsernameFromPost();
 		console.log('{"#username#":"'+username+'"}');
 	} catch(e) {
-		console.log ('{"#username#":"#"}');
+		console.log ('{"#username#" : "#"}');
 	}
 	return username;
 }
