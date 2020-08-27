@@ -28,7 +28,7 @@ const element = {
     inputPostcode: 'input[id*="enterAddressPostalCode"]',
     inputCity: 'input[id*="enterAddressCityText"]',
     inputState: 'input[id*="enterAddressStateOrRegionText"]',
-    submitAddress: '//input[@name="shipToThisAddress"]',
+    submitAddress: '//input[@name="shipToThisAddress"] | //*[contains(text(),"Add address")]//..//input',
     gifTextarea: '#message-area-0',
     gifTextareaEle: '//*[@id="message-area-0"]',
     cart: '//*[@aria-label="Cart"]',
@@ -52,7 +52,7 @@ const element = {
     selectExpMonth: 'select[name="ppw-expirationDate_month"]',
     selectExpYear: 'select[name="ppw-expirationDate_year"]',
     quantity: '//*[contains(text(),"Qty:")]',
-    citySuburbTown: '//*[contains(text(),"City/Suburb/Town")]',
+    citySuburbTown: '//*[contains(text(),"City/Suburb/Town") or contains(text(),"Choose city or suburb")]',
     addYourCard: '//*[contains(text(),"Add your card")]/..//input',
     placeYourOrder: '//*[contains(text(),"Place your order")]/..//input',
     reviewOrder: '//*[text()[contains(.,"Review")]]',
@@ -274,7 +274,7 @@ const amazon = {
 	try {
                 await amazon.page.waitFor(2000);
                 await amazon.page.waitFor(amazon.element.citySuburbTown);
-                await amazon.utils.click(amazon, '//*[@id="enterAddressCity"]//*[@role="button"]' , 1000);
+                await amazon.utils.click(amazon, '//select[contains(@id,"enterAddressCity")]/..//*[@role="button"]' , 1000);
                 await amazon.page.waitFor(3000);
                 await amazon.utils.click(amazon, '//a[@data-value=\'{"stringVal":"'+amazon.parameters.customer.city_original+'"}\']', 3000)
                 await amazon.page.waitFor(3000);
