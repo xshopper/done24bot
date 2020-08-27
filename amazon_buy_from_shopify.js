@@ -25,8 +25,7 @@ init: async() => {
 	console.log('init...');
 	console.log('installing required packages...')
 	
-//	ig.bot =  await ig.utils.requireFromURL('https://raw.githubusercontent.com/xshopper/done24bot/master/websites/amazon.com.au.js')
-	ig.bot = require('/Users/gbacskai/Documents/done24bot/websites/amazon.com.au.js');
+	ig.bot =  await ig.utils.requireFromURL('https://raw.githubusercontent.com/xshopper/done24bot/master/websites/amazon.com.au.js')
 	ig.bot.utils = ig.utils;
 
 	try {
