@@ -121,7 +121,11 @@ process: async () => {
       try {
 	    var picked_zip = ig.lodash.filter(address[0].address_components, { "types" : [ 'postal_code' ] } )[0].long_name.replace(/\n/g,' ');
       } catch(e) {
+	    try {
 	    var picked_zip = ig.lodash.filter(address[1].address_components, { "types" : [ 'postal_code' ] } )[0].long_name.replace(/\n/g,' ');
+	    } catch(e) {
+		    var picked_zip = order.shipping_address.zip;
+	    }
       }
 
       var city_original = order.shipping_address.city.toUpperCase();
