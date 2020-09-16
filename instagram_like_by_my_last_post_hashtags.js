@@ -37,8 +37,13 @@ process: async () => {
 	await ig.bot.openActivity();
 	await ig.utils.sleep(3000);
 
+	try {
 	await ig.bot.openProfile()
 		.catch(function(err) { console.log('error: ', err); process.exit(1) });;
+	} catch(e) {
+		console.log('error: ', err); 
+		process.exit(1);
+	}
 
 	for (var i = 1; i < 200; i++) { /// loop on my posts
 		console.log('await ig.bot.openPost(i);')
