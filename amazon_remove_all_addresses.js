@@ -29,18 +29,14 @@ process: async () => {
 
 	await ig.bot.page.goto(ig.BASE_URL+ '/a/addresses/')
 
-	while (true) {
-	  try {
+	var new_address = true;
+
+	while (new_address) {
+	    
 	    var e = '//*[@id="ya-myab-address-delete-btn-0-announce"]'
-            await ig.bot.utils.click(ig.bot, e, 5000)
-	  } catch (err) {
-	  }
-	  try {
+            var new_address = await ig.bot.utils.click(ig.bot, e, 5000)
 	    var elem = '//*[@id="deleteAddressModal-0-submit-btn-announce"]/../input'
 	    await ig.bot.utils.click(ig.bot, elem, 5000)
-          } catch (err) {
-	    return;
-          }
 	}
  }
 }
