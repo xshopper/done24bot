@@ -31,10 +31,16 @@ process: async () => {
 
 	var new_address = true;
 
+	var e = '//*[@id="ya-myab-address-delete-btn-0-announce"]'
+
 	while (new_address) {
-	    
+	    try {
+		await ig.bot.page.waitFor(e, { timeout : 5000});
+	    } catch(e) {
+		new_address = false;	
+	    } 
 	    var e = '//*[@id="ya-myab-address-delete-btn-0-announce"]'
-            var new_address = await ig.bot.utils.click(ig.bot, e, 10000)
+            await ig.bot.utils.click(ig.bot, e, 10000)
 	    var elem = '//*[@id="deleteAddressModal-0-submit-btn-announce"]/../input'
 	    await ig.bot.utils.click(ig.bot, elem, 5000)
 	}
