@@ -89,12 +89,14 @@ process: async () => {
 						}
 						var comment = await ig.bot.openComments()
 						if(comment) {
+						   try {
 						   await ig.bot.commentLike(ig.utils.randomIntInc(1, 4))
+						   } catch(e) {}
 						   await ig.bot.goBack();
 						   await ig.bot.waitPostPage();
 						}
 						await ig.bot.goBack();
-						await ig.utils.sleep(1000);
+						await ig.utils.sleep(500);
 					} else {
 						j = 110
 						break
