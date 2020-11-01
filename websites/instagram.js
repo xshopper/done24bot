@@ -68,7 +68,7 @@ const ig = {
     textComments: '//h1[text()="Comments"]',
     commentLike: '//*[@aria-label="Like" and contains(@height,"12")]/..',
     commentViewReplies: '//*[contains(text(),"View replies")]/..',
-    profileFollowUnfollowtext: '//button[contains(text(),"Follow") or contains(text(),"Following") or contains(text(),"Message") or contains(text(),"Edit Profile")]',
+    profileFollowUnfollowtext: '//*[contains(text(),"Follow") or contains(text(),"Following") or contains(text(),"Message") or contains(text(),"Edit Profile")]',
     profilePostsNr: '//span//span[contains(.,"posts")]/span',
     profileFollowersNr: '//span/following-sibling::text()[contains(.,"followers")]/../span',
     profileFollowingNr: '//span/following-sibling::text()[contains(.,"following")]/../span',
