@@ -16,8 +16,6 @@ const ig = {
 
     process: async () => {
         console.log('process');
-        let log = await ig.utils.log({ "filename": "index_ig_like_only", "function": "process", "url": ig.bot.page.url(), "instagram": ig.bot.username });
-
 
         const loginData = await ig.bot.login();
 

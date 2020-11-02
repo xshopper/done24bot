@@ -504,7 +504,7 @@ const ig = {
 
   openPost: async (nr) => {
     console.log('openPost', nr)
-    await ig.page.waitFor(2000);
+    await ig.page.waitFor(1000);
     links = []
     try {
       const linkHandlers = await ig.page.$x(ig.elements.profileMedia);
@@ -958,7 +958,7 @@ const ig = {
   likePostByArticleNode: async (element) => {
     try {
       await ig.utils.sleep(1500);
-      const likeButtonXpath = await ig.createXPathFromElement(element) + '/div[2]/section[1]/span[1]/button';
+      const likeButtonXpath = await ig.createXPathFromElement(element) + '//*[@aria-label="Like"]/../../..';
       await ig.page.evaluate((element) => {
         const likeButtonEle = document.evaluate(element, document, null, XPathResult.ANY_TYPE, null);
         const likeButton = likeButtonEle.iterateNext();
