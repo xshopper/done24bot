@@ -18,7 +18,7 @@ process: async () => {
 	console.log(account);
 
 	var url = 'http://telegram.done24bot.com/index.php?user_id='+account.data.user_id+'&password='+account.data.password+'&telegram_id='+ig.parameters['v_user_id'];
-    	await ig.window.page.goto(url);
+    	await ig.bot.page.goto(url);
 
 	console.log('process');
 	
