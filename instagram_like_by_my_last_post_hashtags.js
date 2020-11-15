@@ -62,7 +62,7 @@ process: async () => {
 		for (var t = 0; t < tags.length; t++) { // loop on the tags
 			var hash = tags[t];
 
-			var url = '//a[contains(@href,"' + hash + '")]';
+			var url = '//a[contains(@href,"/' + hash + '/")]';
 			console.log('url', url)
 			try {
 				const button2 = await ig.bot.page.waitFor(url, { timeout: 12000 });
