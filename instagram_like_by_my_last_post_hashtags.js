@@ -75,6 +75,9 @@ process: async () => {
 				await ig.bot.waitProfilePage(); // hashtag profile
 				var already_liked = 20;
 				for (var j = 1; j < ig.utils.randomIntInc(50, 100) && already_liked; j++) { // loop on the tag's posts
+					if(j===1) {
+						await ig.utils.sleep(5000);
+					}
 					var oo = await ig.bot.openPost(9 + j)
 					await ig.utils.saveCookies(ig.bot).catch(function(error) {
                 				console.log(error);
