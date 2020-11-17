@@ -504,7 +504,7 @@ const ig = {
 
   openPost: async (nr) => {
     console.log('openPost', nr)
-    await ig.page.waitFor(1000);
+    await ig.page.waitFor(10000);
     links = []
     try {
       const linkHandlers = await ig.page.$x(ig.elements.profileMedia);
