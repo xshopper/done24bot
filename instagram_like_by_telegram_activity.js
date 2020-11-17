@@ -3,7 +3,10 @@ BASE_URL:'https://instagram.com?utm_source=pwa_homescreen',
 description: 'From telegram groups likes all links from the last 24h where the account been seen, use the user_id been given in telegram @done24bot after you type /start',
 video : 'https://drive.google.com/file/d/1zS2AiyuhIs4V_nxwJdkw06GqG5CveBEs/view?usp=sharing',
 utils:null,
+windower:null,
 parameters:{},
+insta : 'https://www.instagram.com',
+query_hash:null,
 form: [{ "id": "v_user_id", "elem" : "input", "placeholder" : "user_id from telegram @done24boti (type /start there)"}],
 data:null,
 init: async() => {
@@ -18,9 +21,27 @@ init: async() => {
 
 like_posts: async () => {
 
+        await ig.bot.navigateDirectMessageRequests('treathuntersau');
+
+
 	for (var i = 0; i < ig.data.urls.urls.length; i++) { /// loop on my posts 
-                await ig.bot.page.goto('https://www.instagram.com/p/' + ig.data.urls.urls[i].media_id + '/');
-                
+		var shortmedia = ig.data.urls.urls[i].media_id;
+		shortmedia = shortmedia.match(/\/([a-zA-Z0-9]{11})\//)[1];
+
+		var username = await ig.get_username(shortmedia);
+
+		console.log(username);
+
+		await ig.bot.sendDirectMessage('@' + username);
+
+		var user = '//*[text()="@' + username  + '"]';
+	        const userButton = await ig.windower.page.waitFor(user, { timeout: 3000 });
+        	await userButton.click();
+
+		var post = '//a[contains(@href,"' + shortmedia + '")]';
+                const postButton = await ig.windower.page.waitFor(post, { timeout: 3000 });
+		await postButton.click();
+
                 var log = await ig.bot.likePost();
                 if (log.wait > 0) {
 		    console.log(log);
@@ -28,9 +49,46 @@ like_posts: async () => {
 		    alert(log.reached_limit + " ... waiting " + (log.wait/60000) + " minutes")
                     await ig.utils.sleep(log.wait);
                 }
-                await ig.utils.sleep(3000);
+
+		await ig.bot.goBack();
+		await ig.bot.goBack();
+
+                //await ig.utils.sleep(3000);
         }
+
+	await ig.bot.goBack();
+        await ig.bot.goBack();
+	await ig.bot.goBack();
+
 },
+
+get_username: async (shortmedia) => {
+
+        if(!ig.query_hash) {
+                let bodyHTML = await ig.windower.page.evaluate(() => document.body.innerHTML);
+                let url = bodyHTML.match(/\/(static\/bundles\/.+\/Consumer\.js\/.+\.js)/g)[1];
+
+                var body2HTML = await ig.utils.httpRequestText(ig.insta + url);
+
+                var hashes = body2HTML.match(/[a-zA-Z]="([a-zA-Z0-9]{32})"/g);
+
+                for(var i=0;i<hashes.length;i++) {
+                        hashes[i] = hashes[i].substr(2).replaceAll('"','');
+                }
+                ig.query_hash = hashes[7];
+        }
+
+        try {
+                var body3HTML = await ig.utils.httpRequestText('https://www.instagram.com/graphql/query/?query_hash=' + ig.query_hash + '&variables=%7B%22shortcode%22%3A%22' + shortmedia + '%22%7D');
+                var jsondata = JSON.parse(body3HTML);
+
+                return jsondata['data']['shortcode_media']['owner']['username']
+        } catch(e) {
+                return;
+                return ig.get_username();
+        }
+},
+
 
 process: async () => {
 
@@ -39,7 +97,6 @@ process: async () => {
         }
 
 	console.log('process');
-        let log = await ig.utils.log({"filename" : "index_ig_like", "function" : "process", "url" : ig.bot.page.url(), "instagram" : ig.bot.username, "telegram_id" : ig.parameters.v_user_id });
 
 	const loginData = await ig.bot.login();
 	console.log('logged in ...', ig.data.urls.length)

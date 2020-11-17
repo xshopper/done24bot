@@ -24,7 +24,8 @@ const ig = {
     newPostButton: '//*[contains(@aria-label,"New Post")]',
     saveLoginInfo: '//*[contains(text(),"Save Info")]',
     //firstSearchResult: 'ul > li:first-child > a',
-    correctSearchResult: '/html/body/div[1]/section/main/div/div/div/ul/li[1]/a/div/div[2]/div[1]/div/div',
+    searchBox: '//input[@placeholder="Search..."]',
+    searchBoxType: 'input[placeholder="Search..."]',
     messagegButton: '//div/button[contains(text(), "Message")]',
     textArea: 'textArea',
     sendMessage: '//div/button[contains(text(), "Send")]',
@@ -36,16 +37,16 @@ const ig = {
     cancelButton: '//button[contains(text(),"Cancel")]',
     xButtonFindMore: '//*[contains(@class,"glyphsSpriteGrey_Close")]',
     addPhoneNumber: '//h2[contains(text(),"Add Your Phone Number")]',
-    getApp: '//h1[contains(text(),"Get the Instagram App")]',
-    notNowLink: '//a[contains(text(),"Not Now")]',
+    getApp: '//*[contains(text(),"Use the App")]',
+    notNowLink: '//*[contains(text(),"Not Now")]',
     addInstagramToHome: '//*[contains(text(),"Add Instagram to your Home screen?")]',
     turnOnNotifications: '//*[contains(text(),"Turn on Notifications")]',
     notNowButton: '//button[contains(text(),"Not Now")]',
     homeButton: '//a//span[@aria-label="Home"]',
     directMsgButton: '//a//span[@aria-label="Direct"]',
-    directMsgReqButton: '//*[@id="react-root"]/section/div[2]/div/div/div[2]/div/div[1]/button',
+    directMsgReqButton: '//*[@href="/direct/inbox/"]',
     messageRequests: '//h1[contains(text(),"Message Requests")]',
-    directMsgReqLists: '//*[@id="react-root"]/section/div[2]/div/div[2]/a',
+    newMessage: '//*[@aria-label="New Message"]/../..',
     allow: '//div[contains(text(),"Allow")]',
     backLink: '//*[@aria-label="Back"]',
     disabledAccount: '//p[contains(text(),"Your account has been disabled for violating our terms")]',
@@ -302,12 +303,11 @@ const ig = {
 
   goBack: async () => {
     console.log('goBack');
-    await ig.cancelMessage();
+    ig.cancelMessage();
     try {
       await ig.page.waitFor(ig.elements.backLink, { timeout: 3000 });
       const backLink = await ig.page.$x(ig.elements.backLink);
       await backLink[0].click();
-      await ig.utils.sleep(1000)
     } catch (e) { return }
 
   },
@@ -579,7 +579,10 @@ const ig = {
     }
   },
 
-  likePost: async () => {
+  likePost: async (telegram_id=null) => {
+
+    await ig.page.waitFor(ig.elements.textPhoto, { timeout: 4000 });
+    var username = await ig.getUsernameFromPost();
 
     return new Promise((resolve, reject) => {
 
@@ -588,7 +591,7 @@ const ig = {
 
     ig.page.waitFor(ig.elements.postFilledHeart, { timeout: 100 })
 	.then( () => {
-	      ig.utils.log({"message" : "liked" , "instagram" : ig.username, "url" : ig.page.url()} )
+	      ig.utils.log({"message" : "liked" , "instagram" : ig.username, "url" : ig.page.url(), "target_username" : username , "telegram_id" : telegram_id} )
 		.then(log => resolve(log))
 	      console.log('Already been liked');
 	}).catch ( async () => {
@@ -598,8 +601,7 @@ const ig = {
         await ig.utils.sleep(500);
         await ig.page.waitFor(ig.elements.postFilledHeart, { timeout: 3000 });
         await ig.utils.saveCookies(ig);
-	var username = await ig.getUsernameFromPost();
-	let log = await ig.utils.log({"message" : "like" , "instagram" : ig.username, "url" : ig.page.url(), "target_username" : username} )
+	let log = await ig.utils.log({"message" : "like" , "instagram" : ig.username, "url" : ig.page.url(), "target_username" : username, "telegram_id" : telegram_id} )
         resolve(log);
     } catch (e) {
 	console.log('likePost error', e)
@@ -661,22 +663,46 @@ const ig = {
   },
 
 
-  navigateDirectMessageRequests: async () => {
+  navigateDirectMessageRequests: async (username) => {
     try {
-      await ig.page.reload();
-      ig.cancelMessage();
       const directMsgReqButton = await ig.page.waitFor(ig.elements.directMsgReqButton, { timeout: 3000 });
-      directMsgReqButton.click();
+      await directMsgReqButton.click();
+      ig.cancelMessage();
       console.log('Message Requests');
       try {
-        await ig.page.waitFor(ig.elements.messageRequests, { timeout: 3000 });
-        const directMsgReqLists = await ig.page.$x(ig.elements.directMsgReqLists);
+        await ig.page.waitFor(ig.elements.newMessage, { timeout: 8000 });
+        const directMsgReqLists = await ig.page.$x(ig.elements.newMessage);
         await directMsgReqLists[0].click();
-        const allow = await ig.page.waitFor(ig.elements.allow, { timeout: 2000 });
-        allow.click();
+        const searchBox = await ig.page.waitFor(ig.elements.searchBox, { timeout: 2000 });
+	await searchBox.click();
+	await ig.page.type(ig.elements.searchBoxType, username, { delay: 50 });
+
+
+	var user = '//div[text()="' + username + '"]';
+	const userButton = await ig.page.waitFor(user, { timeout: 3000 });
+	await userButton.click();
+
+	var next = '//div[text()="Next"]';
+        const nextButton = await ig.page.waitFor(next, { timeout: 3000 });
+	await nextButton.click();
+
       } catch (e) {
       }
     } catch (e) {
+    }
+  },
+
+  sendDirectMessage: async (message) => {
+    try {
+	const messageBox = await ig.page.waitFor('//textarea[@placeholder="Message..."]' , { timeout: 2000 });
+        await messageBox.click();
+
+        const messageBoxType = 'textarea[placeholder="Message..."]';
+        await ig.page.type(messageBoxType, message, { delay: 50 });
+
+        const sendButton = await ig.page.waitFor('//button[text()="Send"]', { timeout: 2000 });
+        await sendButton.click();
+    } catch(e) {
     }
   },
 
