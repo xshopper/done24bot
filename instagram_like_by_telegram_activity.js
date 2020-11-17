@@ -34,11 +34,11 @@ like_posts: async () => {
 		await ig.bot.sendDirectMessage('@' + username);
 
 		var user = '//*[text()="@' + username  + '"]';
-	        const userButton = await ig.windower.page.waitFor(user, { timeout: 3000 });
+	        const userButton = await ig.windower.page.waitForSelector(user, { timeout: 3000 });
         	await userButton.click();
 
 		var post = '//a[contains(@href,"' + shortmedia + '")]';
-                const postButton = await ig.windower.page.waitFor(post, { timeout: 3000 });
+                const postButton = await ig.windower.page.waitForSelector(post, { timeout: 3000 });
 		await postButton.click();
 
                 var log = await ig.bot.likePost();

@@ -19,7 +19,7 @@ const li = {
 
 	checkLogin: async () => {
 		try {
-			await li.page.waitFor(li.elements.profile, { timeout: 10000 });
+			await li.page.waitForSelector(li.elements.profile, { timeout: 10000 });
 			return true
 		} catch (e) {
 			return false
@@ -47,7 +47,7 @@ const li = {
 		var element = li.elements.profileButton
 
 		try {
-			await li.page.waitFor(element, { timeout: 10000 });
+			await li.page.waitForSelector(element, { timeout: 10000 });
 			await li.getUsername();	
 			return { "status": "Logged In" }
 		} catch (e) {
@@ -64,7 +64,7 @@ const li = {
 				} catch (e) {
 					var x = li.catchError(); if (x) { return x; }
 				}
-				await li.page.waitFor(1000);
+				await li.page.waitForSelector(1000);
 
 				await li.page.type(li.elements.username, username, { delay: 50 });
 				await li.page.type(li.elements.password, password, { delay: 50 });
@@ -72,7 +72,7 @@ const li = {
 				const loginButton2 = await li.page.$x(elements.loginButton2);
 				await loginButton2[0].click();
 				try {
-					await li.page.waitFor(element, { timeout: 300000 });
+					await li.page.waitForSelector(element, { timeout: 300000 });
 					await li.getUsername();
 					return { "status": "Logged In" }
 				} catch (e) {
@@ -80,7 +80,7 @@ const li = {
 				}
 			}
 
-			await li.page.waitFor(element, { timeout: 300000 });
+			await li.page.waitForSelector(element, { timeout: 300000 });
 			await li.getUsername();
 			return { "status": "Logged In" }
 		} catch (e) {
@@ -96,7 +96,7 @@ const li = {
 	},
 
 	mainFeedLike: async (viewStoriesCount) => {
-		await li.page.waitFor(2000);
+		await li.page.waitForSelector(2000);
 		let article = null;
                 let count = 0;
 		try {

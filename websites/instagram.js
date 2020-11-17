@@ -97,7 +97,7 @@ const ig = {
       if(username && password) {
 	wait = 3000;
       }
-      const profile = await ig.page.waitFor(ig.elements.profile, { timeout: wait });
+      const profile = await ig.page.waitForSelector(ig.elements.profile, { timeout: wait });
       return true
     } catch (e) {
       if(!(username && password)) {
@@ -120,7 +120,7 @@ const ig = {
         if(username && password) {
           wait = 3000;
         }
-      	const profile = await ig.page.waitFor(element, { waitUntil: wait });
+      	const profile = await ig.page.waitForSelector(element, { waitUntil: wait });
       	await ig.getViewer();
       	return { "status": "Logged In" }
       }
@@ -143,13 +143,13 @@ const ig = {
 
    	await ig.utils.sleep(1500);
  
-	await ig.page.waitFor(ig.elements.username, { timeout: 10000 });	
+	await ig.page.waitForSelector(ig.elements.username, { timeout: 10000 });	
     	await ig.page.type(ig.elements.username, username, { delay: 50 });
         await ig.page.type(ig.elements.password, password, { delay: 50 });
 
 	await ig.utils.click(ig, ig.elements.loginButton2 , 2000);
 
-	await ig.page.waitFor(ig.elements.notNowButton,  { timeout: 3000 });
+	await ig.page.waitForSelector(ig.elements.notNowButton,  { timeout: 3000 });
 	await ig.utils.click(ig, ig.elements.notNowButton , 2000);
 	await ig.utils.click(ig, ig.elements.notNowButton , 2000);
 	await ig.utils.click(ig, ig.elements.cancelButton , 2000);
@@ -157,7 +157,7 @@ const ig = {
 	await ig.utils.click(ig, ig.elements.xButtonFindMore, 2000);
 	
     	try {
-      		const profile = await ig.page.waitFor(element, { timeout: 300000 });
+      		const profile = await ig.page.waitForSelector(element, { timeout: 300000 });
 		await ig.getViewer();
       		return { "status": "Logged In" }
     	} catch (e) {
@@ -165,7 +165,7 @@ const ig = {
     	}		
       }
 
-      const profile = await ig.page.waitFor(element, { timeout: 300000 });
+      const profile = await ig.page.waitForSelector(element, { timeout: 300000 });
       ig.cancelMessage();
       await ig.getViewer();
       return { "status": "Logged In" }
@@ -193,25 +193,25 @@ const ig = {
 
   catchError: async () => {
     try {
-      await ig.page.waitFor(ig.elements.addPhoneNumber, { timeout: 200 });
+      await ig.page.waitForSelector(ig.elements.addPhoneNumber, { timeout: 200 });
       await ig.utils.log({ "message": "Add Phone Number" });
       return { "status": "Add Phone Number" }
     } catch (e) { }
 
     try {
-      await ig.page.waitFor(ig.elements.disabledAccount, { timeout: 200 });
+      await ig.page.waitForSelector(ig.elements.disabledAccount, { timeout: 200 });
       await ig.utils.log({ "message": "Disabled Account" });
       return { "status": "Disabled Account" }
     } catch (e) { }
     try {
-      await ig.page.waitFor(ig.elements.suspiciousLoginAttempt, { timeout: 200 });
+      await ig.page.waitForSelector(ig.elements.suspiciousLoginAttempt, { timeout: 200 });
       await ig.utils.log({ "message": "Suspicious Login Attempt" });
       return { "status": "Suspicious Login Attempt" }
     } catch (e) {
     }
 
     try {
-	await ig.page.waitFor(ig.elements.couldNotComment, { timeout: 800 });
+	await ig.page.waitForSelector(ig.elements.couldNotComment, { timeout: 800 });
 	await ig.utils.log({ "message": "Clouldn't post comment" });
 	return { "status": "Clouldn't post comment" }
     } catch (e) {
@@ -224,15 +224,15 @@ const ig = {
   cancelMessage: async () => {
 
     try {
-      await ig.page.waitFor(ig.elements.getApp, { timeout: 1000 });
-      const notNowLink = await ig.page.waitFor(ig.elements.notNowLink);
+      await ig.page.waitForSelector(ig.elements.getApp, { timeout: 1000 });
+      const notNowLink = await ig.page.waitForSelector(ig.elements.notNowLink);
       await notNowLink.click();
       console.log("Not Now");
     } catch (e) { }
 
     try {
-      await ig.page.waitFor(ig.elements.addInstagramToHome, { timeout: 1000 });
-      const cancelButton = await ig.page.waitFor(ig.elements.cancelButton);
+      await ig.page.waitForSelector(ig.elements.addInstagramToHome, { timeout: 1000 });
+      const cancelButton = await ig.page.waitForSelector(ig.elements.cancelButton);
       await cancelButton.click();
       await ig.utils.log({ "message": "Add Instagram to your Home screen?" })
       console.log("Add Instagram to your Home screen?")
@@ -241,28 +241,28 @@ const ig = {
     } catch (e) { }
 
     try {
-      await ig.page.waitFor(ig.elements.turnOnNotifications, { timeout: 1000 });
-      const notNowButton = await ig.page.waitFor(ig.elements.notNowButton);
+      await ig.page.waitForSelector(ig.elements.turnOnNotifications, { timeout: 1000 });
+      const notNowButton = await ig.page.waitForSelector(ig.elements.notNowButton);
       await notNowButton.click();
       console.log("Turn on Notifications");
     } catch (e) { }
 
     try {
-      await ig.page.waitFor(ig.elements.xButtonFindMore, { timeout: 1000 });
-      const notNowButton = await ig.page.waitFor(ig.elements.xButtonFindMore);
+      await ig.page.waitForSelector(ig.elements.xButtonFindMore, { timeout: 1000 });
+      const notNowButton = await ig.page.waitForSelector(ig.elements.xButtonFindMore);
       await notNowButton.click();
       console.log("Close Find More");
     } catch (e) { }
 
     try {
-      await ig.page.waitFor(ig.elements.saveLoginInfo, { timeout: 1000 });
-      const saveLoginInfo = await ig.page.waitFor(ig.elements.saveLoginInfo);
+      await ig.page.waitForSelector(ig.elements.saveLoginInfo, { timeout: 1000 });
+      const saveLoginInfo = await ig.page.waitForSelector(ig.elements.saveLoginInfo);
       await saveLoginInfo.click();
       console.log("Save Login Info")
     } catch (e) { }
 
     try {
-      await ig.page.waitFor(ig.elements.actionBlocked, { timeout: 1000 });
+      await ig.page.waitForSelector(ig.elements.actionBlocked, { timeout: 1000 });
       console.log("Action Blocked")
       await ig.page.screenshot({ path: 'action-blocked.png' });
       await ig.utils.log({ "message": "Action Blocked" })
@@ -270,30 +270,30 @@ const ig = {
     } catch (e) { }
 
     try {
-      await ig.page.waitFor(ig.elements.wait, { timeout: 1000 });
+      await ig.page.waitForSelector(ig.elements.wait, { timeout: 1000 });
       console.log("wait")
       await ig.utils.log({ "message": "wait" })
       return "wait"
     } catch (e) { }
 
     try {
-      await ig.page.waitFor(ig.elements.error, { timeout: 1000 });
+      await ig.page.waitForSelector(ig.elements.error, { timeout: 1000 });
       console.log("wait")
       await ig.utils.log({ "message": "error" })
       return "error"
     } catch (e) { }
 
     try {
-      await ig.page.waitFor(ig.elements.temporaryBlocked, { timeout: 1000 });
+      await ig.page.waitForSelector(ig.elements.temporaryBlocked, { timeout: 1000 });
       console.log("Teamporary Blocked")
-      const notNowButton = await ig.page.waitFor(ig.elements.reportProblem);
+      const notNowButton = await ig.page.waitForSelector(ig.elements.reportProblem);
       await notNowButton.click();
       await ig.utils.log({ "message": "Temporary Blocked" })
       return "Temporary Blocked"
     } catch (e) { }
 
     try {
-        await ig.page.waitFor(ig.elements.couldNotComment, { timeout: 800 });
+        await ig.page.waitForSelector(ig.elements.couldNotComment, { timeout: 800 });
         await ig.utils.log({ "message": "Clouldn't post comment" });
         return { "status": "Clouldn't post comment" }
     } catch (e) {
@@ -305,7 +305,7 @@ const ig = {
     console.log('goBack');
     ig.cancelMessage();
     try {
-      await ig.page.waitFor(ig.elements.backLink, { timeout: 3000 });
+      await ig.page.waitForSelector(ig.elements.backLink, { timeout: 3000 });
       const backLink = await ig.page.$x(ig.elements.backLink);
       await backLink[0].click();
     } catch (e) { return }
@@ -314,9 +314,9 @@ const ig = {
 
   goHome: async () => {
     console.log('goHome')
-    const homeButton = await ig.page.waitFor(ig.elements.homeButton, { timeout: 5000 });
+    const homeButton = await ig.page.waitForSelector(ig.elements.homeButton, { timeout: 5000 });
     await homeButton.click();
-    await ig.page.waitFor(ig.elements.Instagram, { timeout: 5000 });
+    await ig.page.waitForSelector(ig.elements.Instagram, { timeout: 5000 });
   },
 
   navigateDirectMessage: async () => {
@@ -326,27 +326,27 @@ const ig = {
     await ig.goHome()
 
     console.log('click Direct Message');
-    const directMsgButton = await ig.page.waitFor(ig.elements.directMsgButton, { timeout: 3000 });
+    const directMsgButton = await ig.page.waitForSelector(ig.elements.directMsgButton, { timeout: 3000 });
     await directMsgButton.click();
   },
 
   navigateFollowing: async () => {
     console.log('navigateFollowing')
-    const followingButton = await ig.page.waitFor(ig.elements.following, { timeout: 10000 });
+    const followingButton = await ig.page.waitForSelector(ig.elements.following, { timeout: 10000 });
     await followingButton.click();
-    await ig.page.waitFor(ig.elements.followingText, { timeout: 10000 });
+    await ig.page.waitForSelector(ig.elements.followingText, { timeout: 10000 });
   },
 
   follow: async () => {
     console.log('follow')
-    const followButton = await ig.page.waitFor(ig.elements.followButton, { timeout: 300 });
+    const followButton = await ig.page.waitForSelector(ig.elements.followButton, { timeout: 300 });
     await followButton.click();
     try {
-      const followingButton = await ig.page.waitFor(ig.elements.followingButton, { timeout: 3000 });
+      const followingButton = await ig.page.waitForSelector(ig.elements.followingButton, { timeout: 3000 });
       return true
     } catch (e) {
       try {
-        const followingButton = await ig.page.waitFor(ig.elements.followBackButton, { timeout: 3000 });
+        const followingButton = await ig.page.waitForSelector(ig.elements.followBackButton, { timeout: 3000 });
         return true;
       } catch (e) {
         return false;
@@ -356,11 +356,11 @@ const ig = {
 
   unfollow: async () => {
     console.log('unfollow')
-    const followingButton = await ig.page.waitFor(ig.elements.followingButton, { timeout: 3000 });
+    const followingButton = await ig.page.waitForSelector(ig.elements.followingButton, { timeout: 3000 });
     await followingButton.click();
 
     try {
-      const unfollowButton = await ig.page.waitFor(ig.elements.unfollowButton, { timeout: 3000 });
+      const unfollowButton = await ig.page.waitForSelector(ig.elements.unfollowButton, { timeout: 3000 });
       await unfollowButton.click();
       console.log('unfollow clicked');
       // notify server
@@ -371,7 +371,7 @@ const ig = {
     }
 
     try {
-      const followButton = await ig.page.waitFor(ig.elements.followButton, { timeout: 3000 });
+      const followButton = await ig.page.waitForSelector(ig.elements.followButton, { timeout: 3000 });
       // notify server
       //unfollow success
     } catch (e) {
@@ -383,18 +383,18 @@ const ig = {
 
   navigateFollowers: async () => {
     console.log('navigateFollowers')
-    const followerButton = await ig.page.waitFor(ig.elements.followers, { timeout: 10000 });
+    const followerButton = await ig.page.waitForSelector(ig.elements.followers, { timeout: 10000 });
     await followerButton.click();
     try {
-      const followerButton = await ig.page.waitFor(ig.elements.see_all_followers, { timeout: 10000 });
+      const followerButton = await ig.page.waitForSelector(ig.elements.see_all_followers, { timeout: 10000 });
       await followerButton.click();
     } catch (e) { }
-    await ig.page.waitFor(2000);
+    await ig.page.waitForSelector(2000);
   },
 
   commentLike: async (nr) => {
     console.log('commentLike', ig.page.url())
-    await ig.page.waitFor(2000);
+    await ig.page.waitForSelector(2000);
     ig.cancelMessage();
     links = await ig.page.evaluate((selector, nr) => {
       let query = document.evaluate(selector, document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
@@ -413,7 +413,7 @@ const ig = {
     var links = [];
     do {
       var allLinks = links;
-      await ig.page.waitFor(2000);
+      await ig.page.waitForSelector(2000);
       links = await ig.page.evaluate((selector) => {
         let results = [];
         let query = document.evaluate(selector, document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
@@ -439,10 +439,10 @@ const ig = {
     await ig.openProfile();
     await ig.navigateFollowing();
 
-    const button = await ig.page.waitFor(ig.elements.hashtagsText, { timeout: 6000 });
+    const button = await ig.page.waitForSelector(ig.elements.hashtagsText, { timeout: 6000 });
     await Promise.all([
       button.click(),
-      ig.page.waitForNavigation({ waitUntil: 'networkidle0' })
+      ig.page.waitForSelectorNavigation({ waitUntil: 'networkidle0' })
     ]);
 
     await ig.utils.sleep(2000)
@@ -452,11 +452,11 @@ const ig = {
     var url = '//a[contains(@href,"' + tags[Math.min(nr, tags.length)] + '")]/img/.';
     console.log('url', url)
 
-    const button2 = await ig.page.waitFor(url, { timeout: 6000 });
+    const button2 = await ig.page.waitForSelector(url, { timeout: 6000 });
 
     await Promise.all([
       button2.click(),
-      ig.page.waitForNavigation({ waitUntil: 'networkidle0' })
+      ig.page.waitForSelectorNavigation({ waitUntil: 'networkidle0' })
     ]);
 
     await ig.waitProfilePage();
@@ -468,7 +468,7 @@ const ig = {
     var links = [];
     do {
       var allLinks = links;
-      await ig.page.waitFor(2000);
+      await ig.page.waitForSelector(2000);
       links = await ig.page.evaluate((selector) => {
         let results = [];
         let query = document.evaluate(selector, document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
@@ -504,7 +504,7 @@ const ig = {
 
   openPost: async (nr) => {
     console.log('openPost', nr)
-    await ig.page.waitFor(10000);
+    await ig.page.waitForSelector(1000);
     links = []
     try {
       const linkHandlers = await ig.page.$x(ig.elements.profileMedia);
@@ -520,7 +520,7 @@ const ig = {
   openProfile: async (nr) => {
     console.log('openProfile');
     try {
-      const button = await ig.page.waitFor(ig.elements.profileButton, { timeout: 12000 });
+      const button = await ig.page.waitForSelector(ig.elements.profileButton, { timeout: 12000 });
       await button.click(),
         await ig.waitProfilePage();
     } catch (e) {
@@ -533,9 +533,9 @@ const ig = {
   waitProfilePage: async () => {
     console.log('waitProfilePage')
     try {
-      await ig.page.waitFor(ig.elements.profileFollowUnfollowtext, { timeout: 15000 });
+      await ig.page.waitForSelector(ig.elements.profileFollowUnfollowtext, { timeout: 15000 });
       try {
-        await ig.page.waitFor(ig.elements.isPrivate, { timeout: 100 });
+        await ig.page.waitForSelector(ig.elements.isPrivate, { timeout: 100 });
         return 'private';
       } catch (e) {
         return true;
@@ -548,7 +548,7 @@ const ig = {
 
   waitPostPage: async () => {
     try {
-      await ig.page.waitFor(ig.elements.textPhoto, { timeout: 6000 });
+      await ig.page.waitForSelector(ig.elements.textPhoto, { timeout: 6000 });
       return true;
     } catch (e) {
       await ig.utils.log({ "error": "waitPostPage", "url": ig.page.url() })
@@ -560,7 +560,7 @@ const ig = {
   openActivity: async (nr) => {
     console.log('openActivity');
     try {
-      const button = await ig.page.waitFor(ig.elements.activityButton, { timeout: 30000 });
+      const button = await ig.page.waitForSelector(ig.elements.activityButton, { timeout: 30000 });
       await button.click(),
         await ig.waitActivityPage();
     } catch (e) {
@@ -572,7 +572,7 @@ const ig = {
   waitActivityPage: async () => {
     console.log('waitActivityPage')
     try {
-      await ig.page.waitFor(ig.elements.activityText, { timeout: 12000 });
+      await ig.page.waitForSelector(ig.elements.activityText, { timeout: 12000 });
     } catch (e) {
       await ig.utils.log({ "error": "waitActivityPage", "url": ig.page.url() })
       console.log('waitActivityPage Error', e, ig.page.url())
@@ -581,7 +581,7 @@ const ig = {
 
   likePost: async (telegram_id=null) => {
 
-    await ig.page.waitFor(ig.elements.textPhoto, { timeout: 4000 });
+    await ig.page.waitForSelector(ig.elements.textPhoto, { timeout: 4000 });
     var username = await ig.getUsernameFromPost();
 
     return new Promise((resolve, reject) => {
@@ -589,17 +589,17 @@ const ig = {
     ig.cancelMessage();
     console.log('likePost', ig.page.url());
 
-    ig.page.waitFor(ig.elements.postFilledHeart, { timeout: 100 })
+    ig.page.waitForSelector(ig.elements.postFilledHeart, { timeout: 100 })
 	.then( () => {
 	      ig.utils.log({"message" : "liked" , "instagram" : ig.username, "url" : ig.page.url(), "target_username" : username , "telegram_id" : telegram_id} )
 		.then(log => resolve(log))
 	      console.log('Already been liked');
 	}).catch ( async () => {
     try {
-        const likeButton = await ig.page.waitFor(ig.elements.postUnfilledHeart, { timeout: 3000 });
+        const likeButton = await ig.page.waitForSelector(ig.elements.postUnfilledHeart, { timeout: 3000 });
         await likeButton.click();
         await ig.utils.sleep(500);
-        await ig.page.waitFor(ig.elements.postFilledHeart, { timeout: 3000 });
+        await ig.page.waitForSelector(ig.elements.postFilledHeart, { timeout: 3000 });
         await ig.utils.saveCookies(ig);
 	let log = await ig.utils.log({"message" : "like" , "instagram" : ig.username, "url" : ig.page.url(), "target_username" : username, "telegram_id" : telegram_id} )
         resolve(log);
@@ -617,9 +617,9 @@ const ig = {
     ig.cancelMessage();
     console.log('openComments', ig.page.url());
     try {
-      const commentButton = await ig.page.waitFor(ig.elements.postComment, { timeout: 6000 });
+      const commentButton = await ig.page.waitForSelector(ig.elements.postComment, { timeout: 6000 });
       await commentButton.click();
-      await ig.page.waitFor(ig.elements.textComments, { timeout: 6000 });
+      await ig.page.waitForSelector(ig.elements.textComments, { timeout: 6000 });
       return true;
     } catch (e) {
       await ig.utils.log({ "error": "openComments", "url": ig.page.url() })
@@ -632,10 +632,10 @@ const ig = {
     console.log('pastComment');
     try {
       await ig.page.type(ig.elements.postCommentInput, comment, { delay : 0 });
-      await ig.page.waitFor(1000);
+      await ig.page.waitForSelector(1000);
       ig.cancelMessage();
       var username = await ig.getUsernameFromPost();
-      const commentButton = await ig.page.waitFor(ig.elements.postCommentSubmit, { timeout: 3000 });
+      const commentButton = await ig.page.waitForSelector(ig.elements.postCommentSubmit, { timeout: 3000 });
       await commentButton.click();
       ig.cancelMessage();
       let log = await ig.utils.log({"message" : "comment" , "comment" : comment,  "instagram" : ig.username, "url" : ig.page.url(), "target_username" : username } )
@@ -651,7 +651,7 @@ const ig = {
     ig.cancelMessage();
     console.log('openPostUser');
     try {
-      const commentButton = await ig.page.waitFor(ig.elements.postUser, { timeout: 3000 });
+      const commentButton = await ig.page.waitForSelector(ig.elements.postUser, { timeout: 3000 });
       await commentButton.click();
       await ig.waitProfilePage();
       return true;
@@ -665,25 +665,25 @@ const ig = {
 
   navigateDirectMessageRequests: async (username) => {
     try {
-      const directMsgReqButton = await ig.page.waitFor(ig.elements.directMsgReqButton, { timeout: 3000 });
+      const directMsgReqButton = await ig.page.waitForSelector(ig.elements.directMsgReqButton, { timeout: 3000 });
       await directMsgReqButton.click();
       ig.cancelMessage();
       console.log('Message Requests');
       try {
-        await ig.page.waitFor(ig.elements.newMessage, { timeout: 8000 });
+        await ig.page.waitForSelector(ig.elements.newMessage, { timeout: 8000 });
         const directMsgReqLists = await ig.page.$x(ig.elements.newMessage);
         await directMsgReqLists[0].click();
-        const searchBox = await ig.page.waitFor(ig.elements.searchBox, { timeout: 2000 });
+        const searchBox = await ig.page.waitForSelector(ig.elements.searchBox, { timeout: 2000 });
 	await searchBox.click();
 	await ig.page.type(ig.elements.searchBoxType, username, { delay: 50 });
 
 
 	var user = '//div[text()="' + username + '"]';
-	const userButton = await ig.page.waitFor(user, { timeout: 3000 });
+	const userButton = await ig.page.waitForSelector(user, { timeout: 3000 });
 	await userButton.click();
 
 	var next = '//div[text()="Next"]';
-        const nextButton = await ig.page.waitFor(next, { timeout: 3000 });
+        const nextButton = await ig.page.waitForSelector(next, { timeout: 3000 });
 	await nextButton.click();
 
       } catch (e) {
@@ -694,13 +694,13 @@ const ig = {
 
   sendDirectMessage: async (message) => {
     try {
-	const messageBox = await ig.page.waitFor('//textarea[@placeholder="Message..."]' , { timeout: 2000 });
+	const messageBox = await ig.page.waitForSelector('//textarea[@placeholder="Message..."]' , { timeout: 2000 });
         await messageBox.click();
 
         const messageBoxType = 'textarea[placeholder="Message..."]';
         await ig.page.type(messageBoxType, message, { delay: 50 });
 
-        const sendButton = await ig.page.waitFor('//button[text()="Send"]', { timeout: 2000 });
+        const sendButton = await ig.page.waitForSelector('//button[text()="Send"]', { timeout: 2000 });
         await sendButton.click();
     } catch(e) {
     }
@@ -746,7 +746,7 @@ const ig = {
   },
 
   openRecentPostOneByOne: async (numberOfPosts, callback) => {
-    await ig.page.waitFor(2000);
+    await ig.page.waitForSelector(2000);
     try {
 
       let articleCol;
@@ -764,7 +764,7 @@ const ig = {
           return;
         }
 
-        await ig.page.waitFor(1000);
+        await ig.page.waitForSelector(1000);
 
         await ig.page.evaluate((ele) => {
           ele.scrollIntoView({
@@ -781,9 +781,9 @@ const ig = {
 
           if (articleRowItem) {
             await articleRowItem.click();
-            await ig.page.waitFor(1500);
+            await ig.page.waitForSelector(1500);
             await callback(articleCol, articleRowItem);
-            await ig.page.waitFor(1500);
+            await ig.page.waitForSelector(1500);
             await ig.goBack();
           }
 
@@ -794,7 +794,7 @@ const ig = {
             });
           }, articleCol);
 
-          await ig.page.waitFor(1500);
+          await ig.page.waitForSelector(1500);
 
           i++;
 
@@ -803,7 +803,7 @@ const ig = {
           }
         }
 
-        await ig.page.waitFor(2000);
+        await ig.page.waitForSelector(2000);
 
         rowCount++;
 
@@ -874,9 +874,9 @@ const ig = {
   follow: async text => {
     console.log('follow');
     try {
-      const followButton = await ig.page.waitFor(ig.elements.followButton, { timeout: 5000 });
+      const followButton = await ig.page.waitForSelector(ig.elements.followButton, { timeout: 5000 });
       await followButton.click();
-      await ig.page.waitFor(ig.elements.followingButton, { timeout: 5000 });
+      await ig.page.waitForSelector(ig.elements.followingButton, { timeout: 5000 });
       return true;
     } catch (e) {
       console.log('already been followed');
@@ -886,15 +886,15 @@ const ig = {
 
   sendSampleMessage: async text => {
     try {
-      await ig.page.waitFor(1000);
-      const messageButton = await ig.page.waitFor(ig.elements.messageButton);
+      await ig.page.waitForSelector(1000);
+      const messageButton = await ig.page.waitForSelector(ig.elements.messageButton);
       await messageButton.click();
 
-      await ig.page.waitFor(3000);
+      await ig.page.waitForSelector(3000);
       await ig.page.type(ig.elements.textArea, text, { delay: 10 });
-      const sendButton = await ig.page.waitFor(ig.elements.sendMessage);
+      const sendButton = await ig.page.waitForSelector(ig.elements.sendMessage);
       await sendButton.click();
-      await ig.page.waitFor(1000);
+      await ig.page.waitForSelector(1000);
     } catch (e) {
       await ig.utils.log({ "error": "sendSampleMessage", "url": ig.page.url() })
       console.log("can't send message");
@@ -904,8 +904,8 @@ const ig = {
 
   turnOffNotification: async () => {
     try {
-      await ig.page.waitFor(ig.elements.turnOnNotifications, { timeout: 100 });
-      const notNowButton = await ig.page.waitFor(ig.elements.notNowButton);
+      await ig.page.waitForSelector(ig.elements.turnOnNotifications, { timeout: 100 });
+      const notNowButton = await ig.page.waitForSelector(ig.elements.notNowButton);
       await notNowButton.click();
       console.log("Turn on Notifications");
     } catch (e) {
@@ -915,8 +915,8 @@ const ig = {
   cancelButton: async () => {
     console.log('cancelButton');
     try {
-      await ig.page.waitFor(ig.elements.cancelButton, { timeout: 3000 });
-      const notNowButton = await ig.page.waitFor(ig.elements.cancelButton);
+      await ig.page.waitForSelector(ig.elements.cancelButton, { timeout: 3000 });
+      const notNowButton = await ig.page.waitForSelector(ig.elements.cancelButton);
       await notNowButton.click();
       console.log("Not Now Button");
     } catch (e) {
@@ -925,7 +925,7 @@ const ig = {
   },
 
   mainFeedLike: async (viewStoriesCount) => {
-    await ig.page.waitFor(2000);
+    await ig.page.waitForSelector(2000);
     await ig.cancelMessage();
     try {
 

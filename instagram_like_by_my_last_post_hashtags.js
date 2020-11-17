@@ -64,11 +64,11 @@ process: async () => {
 			var url = '//a[contains(@href,"/' + hash + '/")]';
 			console.log('url', url)
 			try {
-				const button2 = await ig.bot.page.waitFor(url, { timeout: 12000 });
+				const button2 = await ig.bot.page.waitForSelector(url, { timeout: 12000 });
 
 				await Promise.all([
 					button2.click(),
-					ig.bot.page.waitForNavigation({ waitUntil: 'networkidle0' })
+					ig.bot.page.waitForSelectorNavigation({ waitUntil: 'networkidle0' })
 				]);
 
 				await ig.bot.waitProfilePage(); // hashtag profile

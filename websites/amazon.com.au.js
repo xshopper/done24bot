@@ -74,7 +74,7 @@ const amazon = {
     checkLogin: async (in_timeout) => {
 	console.log('checkLogin', in_timeout);
 	try {
-      		var signedin = await amazon.page.waitFor(element.signedIn, { timeout: in_timeout });
+      		var signedin = await amazon.page.waitForSelector(element.signedIn, { timeout: in_timeout });
 		console.log('checkLogin true')
 		return true;
    	} catch (e) {
@@ -90,7 +90,7 @@ const amazon = {
     login: async (username, password) => {
         await amazon.page.goto(BASE_URL, { waitUntil: 'networkidle0' });
 
-        await amazon.page.waitFor(2000);
+        await amazon.page.waitForSelector(2000);
 	
 	if(username && password) {
 	  console.log('username password login');
@@ -100,12 +100,12 @@ const amazon = {
             signInButton && signInButton.click();
           }, amazon.element);
 
-          await amazon.page.waitFor(1000);
+          await amazon.page.waitForSelector(1000);
 
-          await amazon.page.waitFor(amazon.element.usernameInput);
+          await amazon.page.waitForSelector(amazon.element.usernameInput);
           await amazon.page.type(amazon.element.usernameInput, username, { delay: 1 });
 
-          await amazon.page.waitFor(1000);
+          await amazon.page.waitForSelector(1000);
 
           await amazon.page.evaluate((element) => {
             const continueBtnEle = document.evaluate(element.usernameContinue, document, null, XPathResult.ANY_TYPE, null);
@@ -113,12 +113,12 @@ const amazon = {
             continueBtn && continueBtn.click();
           }, amazon.element);
 
-          await amazon.page.waitFor(1000);
+          await amazon.page.waitForSelector(1000);
 
-          await amazon.page.waitFor(amazon.element.passwordInput);
+          await amazon.page.waitForSelector(amazon.element.passwordInput);
           await amazon.page.type(amazon.element.passwordInput, password, { delay: 1 });
 
-          await amazon.page.waitFor(1000);
+          await amazon.page.waitForSelector(1000);
 
           await amazon.page.evaluate((element) => {
             const signInBtnEle = document.evaluate(element.signInBtn, document, null, XPathResult.ANY_TYPE, null);
@@ -140,56 +140,56 @@ const amazon = {
 	amazon.parameters = parameters;
 
 	await amazon.home();
-	await amazon.page.waitFor(1000);
+	await amazon.page.waitForSelector(1000);
 
 	while (!empty) {
 	        await amazon.utils.click(amazon, amazon.element.cart, 1000)
-		await amazon.page.waitFor(1000);
+		await amazon.page.waitForSelector(1000);
 
 		var empty = false;
 
 		try {
-			await amazon.page.waitFor(amazon.element.emptyCart , { timeout : 1000 })
+			await amazon.page.waitForSelector(amazon.element.emptyCart , { timeout : 1000 })
 			empty = true
 		} catch (e) {
 			empty = false
         		await amazon.utils.click(amazon, amazon.element.deleteCart, 1000)
-			await amazon.page.waitFor(3000);
+			await amazon.page.waitForSelector(3000);
 		}
 		
 		try {
-                        await amazon.page.waitFor(amazon.element.amazonCartIsEmpty , { timeout : 1000 })
+                        await amazon.page.waitForSelector(amazon.element.amazonCartIsEmpty , { timeout : 1000 })
                         empty = true
 		} catch(e) {}
 	}
 	await amazon.home();
 
-        await amazon.page.waitForNavigation({ waitUntil: 'networkidle0' })
+        await amazon.page.waitForSelectorNavigation({ waitUntil: 'networkidle0' })
 
 
 	for(var i=0;i<amazon.parameters.products.length;i++) {
 		await amazon.utils.clearInput(amazon, amazon.element.productSearch);
-       		await amazon.page.waitFor(amazon.element.productSearch);
+       		await amazon.page.waitForSelector(amazon.element.productSearch);
 		console.log("search:" , amazon.parameters.products[i].barcode);
        		await amazon.page.type(amazon.element.productSearch, amazon.parameters.products[i].barcode, { delay: 1 });
        		await amazon.page.keyboard.press('Enter');
-       		await amazon.page.waitFor(3000);
+       		await amazon.page.waitForSelector(3000);
 		await amazon.utils.click(amazon, amazon.element.searchProductNode, 10000)
-		await amazon.page.waitFor(5000);
+		await amazon.page.waitForSelector(5000);
 		if(amazon.parameters.products[i].qty>1) {
 			await amazon.utils.click(amazon, amazon.element.quantity, 1000)
-			await amazon.page.waitFor(5000);
+			await amazon.page.waitForSelector(5000);
 			await amazon.utils.click(amazon, '//*[contains(@data-value, \'"stringVal":"'+amazon.parameters.products[i].qty+'"\')]', 3000)
 			await amazon.utils.wait(3000, amazon);
 		}
 		await amazon.utils.click(amazon, amazon.element.addCartBtn, 10000)
-       		await amazon.page.waitFor(5000);
+       		await amazon.page.waitForSelector(5000);
 		await amazon.utils.click(amazon, amazon.element.checkGift, 10000)
-        	await amazon.page.waitFor(1000);
+        	await amazon.page.waitForSelector(1000);
 	}
 
 	console.log('checkoutBtn')
-        await amazon.page.waitFor(amazon.element.checkoutBtn);
+        await amazon.page.waitForSelector(amazon.element.checkoutBtn);
         await amazon.page.evaluate((element) => {
             const checkoutBtnEle = document.evaluate(element.checkoutBtn, document, null, XPathResult.ANY_TYPE, null)
             const checkoutBtn = checkoutBtnEle.iterateNext();
@@ -199,14 +199,14 @@ const amazon = {
 	console.log('checkoutPassword')
         try {
 
-            await amazon.page.waitFor(1000);
+            await amazon.page.waitForSelector(1000);
 
-            await amazon.page.waitFor(amazon.element.checkoutPassword, { timeout : 5000 });
+            await amazon.page.waitForSelector(amazon.element.checkoutPassword, { timeout : 5000 });
             await amazon.page.type(amazon.element.checkoutPassword, amazon.parameters.amazon_password, { delay: 1 });
 
-            await amazon.page.waitFor(1000);
+            await amazon.page.waitForSelector(1000);
 
-            await amazon.page.waitFor(amazon.element.checkoutPasswordSubmit);
+            await amazon.page.waitForSelector(amazon.element.checkoutPasswordSubmit);
             await amazon.page.evaluate((element) => {
                 const checkoutPasswordSubmitEle = document.evaluate(element.checkoutPasswordSubmit, document, null, XPathResult.ANY_TYPE, null)
                 const checkoutPasswordSubmit = checkoutPasswordSubmitEle.iterateNext();
@@ -227,7 +227,7 @@ const amazon = {
 				} catch(e) { }
                           });
                           addressEmpty = !await amazon.utils.click(amazon, amazon.element.deleteAddress, 1000)
-                          await amazon.page.waitFor(3000);
+                          await amazon.page.waitForSelector(3000);
 			}
 		} catch(e) {
 			addressEmpty = true;
@@ -240,44 +240,44 @@ const amazon = {
         	await amazon.utils.wait(2000, amazon);	
         } catch(e) {}
 
-	await amazon.page.waitFor(1000);
+	await amazon.page.waitForSelector(1000);
 
 	console.log('inputFullname');
-        await amazon.page.waitFor(amazon.element.inputFullname);
+        await amazon.page.waitForSelector(amazon.element.inputFullname);
         await amazon.page.type(amazon.element.inputFullname, amazon.parameters.customer.name.replace("`","'").replace("’","'"), { delay: 1 , timeout : 30000 });
 
 	console.log('inputPhoneno');
-        await amazon.page.waitFor(amazon.element.inputPhoneno);
+        await amazon.page.waitForSelector(amazon.element.inputPhoneno);
         await amazon.page.type(amazon.element.inputPhoneno, amazon.parameters.customer.phone, { delay: 1 });
 
-	await amazon.page.waitFor(1000);
+	await amazon.page.waitForSelector(1000);
 
 	console.log('inputAddress');
-        await amazon.page.waitFor(amazon.element.inputAddress);
+        await amazon.page.waitForSelector(amazon.element.inputAddress);
         await amazon.page.type(amazon.element.inputAddress, amazon.parameters.customer.address.replace("`","'").replace("’","'"), { delay: 1 });
 
-	await amazon.page.waitFor(1000);
+	await amazon.page.waitForSelector(1000);
 
 	console.log('inputAddress2');
-        await amazon.page.waitFor(amazon.element.inputAddress2);
+        await amazon.page.waitForSelector(amazon.element.inputAddress2);
         await amazon.page.type(amazon.element.inputAddress2, amazon.parameters.customer.address2.replace("`","'").replace("’","'"), { delay: 1 });
 
-        await amazon.page.waitFor(1000);
+        await amazon.page.waitForSelector(1000);
 
 	console.log('inputPostcode');
-        await amazon.page.waitFor(amazon.element.inputPostcode);
+        await amazon.page.waitForSelector(amazon.element.inputPostcode);
         await amazon.page.type(amazon.element.inputPostcode, amazon.parameters.customer.postcode, { delay: 1 });
         await amazon.page.$eval(amazon.element.inputPostcode, e => e.blur());
 
-	await amazon.page.waitFor(1000);
+	await amazon.page.waitForSelector(1000);
 
 	try {
-                await amazon.page.waitFor(2000);
-                await amazon.page.waitFor(amazon.element.citySuburbTown);
+                await amazon.page.waitForSelector(2000);
+                await amazon.page.waitForSelector(amazon.element.citySuburbTown);
                 await amazon.utils.click(amazon, '//select[contains(@id,"enterAddressCity")]/..//*[@role="button"]' , 1000);
-                await amazon.page.waitFor(3000);
+                await amazon.page.waitForSelector(3000);
                 await amazon.utils.click(amazon, '//a[@data-value=\'{"stringVal":"'+amazon.parameters.customer.city_original+'"}\']', 3000)
-                await amazon.page.waitFor(3000);
+                await amazon.page.waitForSelector(3000);
         } catch(e) {
                 console.log('only one city');
                 console.log(e);
@@ -285,22 +285,22 @@ const amazon = {
 
 	try {
 		await amazon.utils.click(amazon, '//a[@data-value=\'{"stringVal":"'+amazon.parameters.customer.city+'"}\']', 3000)
-		await amazon.page.waitFor(3000);
+		await amazon.page.waitForSelector(3000);
 	} catch(e) {
 		console.log('only one city');
 		console.log(e);
 	}	
 
 //	console.log('inputCity');
-//        await amazon.page.waitFor(amazon.element.inputCity);
+//        await amazon.page.waitForSelector(amazon.element.inputCity);
 //        await amazon.page.type(amazon.element.inputCity, amazon.parameters.customer.city, { delay: 1 });
 
 //	console.log('inputState');
-//        await amazon.page.waitFor(amazon.element.inputState);
+//        await amazon.page.waitForSelector(amazon.element.inputState);
 //        await amazon.page.type(amazon.element.inputState, amazon.parameters.customer.state, { delay: 1 });
 
 	console.log('submitAddress')
-        await amazon.page.waitFor(amazon.element.submitAddress);
+        await amazon.page.waitForSelector(amazon.element.submitAddress);
         await amazon.page.evaluate((element) => {
             const submitAddressEle = document.evaluate(element.submitAddress, document, null, XPathResult.ANY_TYPE, null)
             const submitAddress = submitAddressEle.iterateNext();
@@ -323,7 +323,7 @@ const amazon = {
 
 	for(var j=0;j<20;j++) {
 		try {
-			await amazon.page.waitFor('//*[@id="message-area-'+j+'"]', { timeout : 100} )
+			await amazon.page.waitForSelector('//*[@id="message-area-'+j+'"]', { timeout : 100} )
 			console.log('gifTextareaEle', j);
 		        await amazon.utils.wait(1000, amazon);
 
@@ -359,7 +359,7 @@ const amazon = {
 		await amazon.utils.wait(2000, amazon);
 
 		try {
-			await amazon.page.waitFor(cardSelector, { timeout : 100} );
+			await amazon.page.waitForSelector(cardSelector, { timeout : 100} );
 			await amazon.page.evaluate((radioButton) => { 
 			    	var radio = document.evaluate(radioButton, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 				radio.click();
@@ -422,7 +422,7 @@ const amazon = {
         await amazon.utils.wait(4000, amazon);
 
 	try {
-		await amazon.page.waitFor(amazon.element.orderedText);
+		await amazon.page.waitForSelector(amazon.element.orderedText);
 		return amazon.page.url()
 	} catch (e) {
 		return false;
@@ -462,8 +462,8 @@ const amazon = {
 
     home: async () => {
         try {
-            await amazon.page.waitFor(1000);
-            await amazon.page.waitFor(amazon.element.home);
+            await amazon.page.waitForSelector(1000);
+            await amazon.page.waitForSelector(amazon.element.home);
             await amazon.page.evaluate((element) => {
                 const homeEle = document.evaluate(element.home, document, null, XPathResult.ANY_TYPE, null);
                 const home = homeEle.iterateNext();

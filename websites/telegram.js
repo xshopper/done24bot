@@ -17,7 +17,7 @@ const bot = {
   login: async () => {
 
     try {
-      await bot.page.waitFor(bot.elements.navBar, { timeout: 300000 });
+      await bot.page.waitForSelector(bot.elements.navBar, { timeout: 300000 });
     } catch (e) {
       console.log("Login Failed");
       console.log(e)

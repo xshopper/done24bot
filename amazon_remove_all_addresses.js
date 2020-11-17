@@ -35,7 +35,7 @@ process: async () => {
 
 	while (new_address) {
 	    try {
-		await ig.bot.page.waitFor(e, { timeout : 5000});
+		await ig.bot.page.waitForSelector(e, { timeout : 5000});
 	    } catch(e) {
 		new_address = false;	
 	    } 

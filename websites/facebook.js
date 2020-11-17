@@ -14,7 +14,7 @@ const ig = {
 
     try {
       console.log('waiting for:', element);
-      const profile = await ig.page.waitFor(element, { timeout: 300000 });
+      const profile = await ig.page.waitForSelector(element, { timeout: 300000 });
       return { "status": "Logged In" }
     } catch (e) {
       console.log("Login Failed");
