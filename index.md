@@ -1,3 +1,5 @@
+<link rel="shortcut icon" type="image/x-icon" href="favicon.png">
+
 # Done24bot
 It automates everything in the web including Instagram, Facebook, Webpages, Telegram, TikTok.
 
