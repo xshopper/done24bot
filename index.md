@@ -12,11 +12,11 @@ the app from [Releases](https://github.com/xshopper/done24bot_v3/releases)
 
 3. Search for an execution plan like this: Demo.
 This script will do something :) ... It goes to cnn, clicks here and there and quits :)
-You can see the history of your executed scripts in the [Execution History](Execution History)
+You can see the history of your executed scripts in the [Execution History](#Execution-History)
 
 # Support
 
-If you have any questions please open a new [discussion](https://github.com/xshopper/done24bot/discussions), try try our best to answer
+If you have any questions please open a new [discussion](https://github.com/xshopper/done24bot/discussions){:target="_blank"}, try try our best to answer
 
 ## Execution Plan
 
