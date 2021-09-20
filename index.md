@@ -2,7 +2,7 @@
 It automates everything in the web including Instagram, Facebook, Webpages, Telegram, TikTok.
 
 # Download 
-the app from [Releases](https://github.com/xshopper/done24bot_v3/releases)
+the app from [Releases](https://github.com/xshopper/done24bot_v3/releases){:target="_blank"}
 
 # Use it!
 
