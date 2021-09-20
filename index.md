@@ -14,7 +14,8 @@ You can see the history of your executed scripts in the [Execution History](#Exe
 
 # Support
 
-If you have any questions please open a new [discussion](https://github.com/xshopper/done24bot/discussions){:target="_blank"}, try try our best to answer
+If you have any question/idea visit [discussion](https://github.com/xshopper/done24bot/discussions){:target="_blank"}.
+We try our best to accomodate your request.
 
 ## Execution Plan
 
