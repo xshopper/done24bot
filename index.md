@@ -6,18 +6,53 @@ the app from [Releases](https://github.com/xshopper/done24bot_v3/releases)
 
 # Use it!
 
-Download the latest release of the application from the releases. Start the application and wait a bit. At the first start it will download the chrome for execution
+1. Download the latest release of the application from the releases. Start the application and wait a bit. At the first start it will download the chrome for execution
 
-Search for an execution plan like this: Demo.
+2. Register and log in to the application.
+
+3. Search for an execution plan like this: Demo.
 This script will do something :) ... It goes to cnn, clicks here and there and quits :)
 You can see the history of your executed scripts in the [Execution History](Execution History)
 
 ## Execution Plan
 
-An execution Plan is a collection of Lists
+This is what you should run/ schedule, this is a collection of lists / Tasks. An execution plan is what does something in the web :)
 An execution plan can have parameters, these parameters are only visible to the specific user.
 
-# Develop
+## Execution History
+
+Here you can see your previous executions
+
+Welcome to the done24bot wiki.
+
+This small doc is helps you to understand how this application works
+## For Users
+
+Please download the latest release of the application from the [releases](/xshopper/done24bot_v3/releases).
+Start the application and wait a bit. At the first start it will download the chrome for execution
+
+Search for an execution plan like this: 
+And start the process.
+
+This script will do something :) ... TBD
+
+You can see the history of your executed scripts in the [Execution History](Execution History)
+
+# FAQ
+
+* Is it working in mobile? -> Not yet, as soon as the desktop application became stable we will work on the mobile version
+* Is it free? -> Yes, you can run scripts but the script will run max 5 mins and you can't use the scheduler
+* How can I pay? -> With paypal, 
+* Can I have a new script? yes! please email your requirement to hello@done24bot.com
+* Is it safe? -> We try to make it safe as possible, have checks in the script ... etc
+* Do you save any passwords? -> No, we do not save the passwords from the website, we can save the cookies and local storage
+* How much is this? -> Desktop version cost $20 USD per month with unlimited run
+
+## For Script Developers
+
+Check out the [Execution Plan](Execution-Plan), [List](List) and [Task](Task) Sections
+
+# Elements
 
 ## Task
 Task is the smalleste element of the execution plan.
@@ -49,4 +84,15 @@ Task parameter is accessible from: app['args']
 The execution level parameters are accessible from: app['jobExec']
 
 <img width="500" alt="Screen Shot 2021-09-20 at 3 31 48 pm" src="https://user-images.githubusercontent.com/16809418/133960537-05f9de57-a6cd-45aa-bc01-07ac020b38bb.png">
+
+## List
+
+You can organise the Tasks into lists
+When you set the order of the [Task](Task)s than you can set which parameter you want to run this specific task in the list.
+You also can test the Lists.
+A list does not have any specific parameter.
+
+## Execution Plan
+
+An execution plan can have parameters, these parameters are only visible to the specific user.
 
