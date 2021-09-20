@@ -14,6 +14,10 @@ the app from [Releases](https://github.com/xshopper/done24bot_v3/releases)
 This script will do something :) ... It goes to cnn, clicks here and there and quits :)
 You can see the history of your executed scripts in the [Execution History](Execution History)
 
+# Support
+
+If you have any questions please open a new [discussion](https://github.com/xshopper/done24bot/discussions), try try our best to answer
+
 ## Execution Plan
 
 This is what you should run/ schedule, this is a collection of lists / Tasks. An execution plan is what does something in the web :)
