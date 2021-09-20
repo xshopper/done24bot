@@ -6,10 +6,8 @@ the app from [Releases](https://github.com/xshopper/done24bot_v3/releases){:targ
 
 # Use it!
 
-1. Download the latest release of the application from the releases. Start the application and wait a bit. At the first start it will download the chrome for execution
-
-2. Register and log in to the application.
-
+1. Register and log in to the application.
+2. Start the application and wait a bit. At the first start it will download the chrome for execution
 3. Search for an execution plan like this: Demo.
 This script will do something :) ... It goes to cnn, clicks here and there and quits :)
 You can see the history of your executed scripts in the [Execution History](#Execution-History)
