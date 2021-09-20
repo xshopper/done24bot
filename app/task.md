@@ -3,14 +3,14 @@
 Task is the smalleste element of the execution plan.
 Task can be created or edited in a task editor
 
-## Name
+## Task name
 
 Name is not unique in the application but people will search by name.
 All names should be lowercase as people
 Prefer to set the name like 
 instagram - and what this task do
 
-## javascript Code
+## Javascript code
 The code is javascript, if you return any variable it can be used in the subsequent tasks (see Return)
 
 You can use the app['jobExec'] , app['args'], app['puppeteer'] objects
