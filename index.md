@@ -25,22 +25,7 @@ An execution plan can have parameters, these parameters are only visible to the 
 
 ## Execution History
 
-Here you can see your previous executions
-
-Welcome to the done24bot wiki.
-
-This small doc is helps you to understand how this application works
-## For Users
-
-Please download the latest release of the application from the [releases](/xshopper/done24bot_v3/releases).
-Start the application and wait a bit. At the first start it will download the chrome for execution
-
-Search for an execution plan like this: 
-And start the process.
-
-This script will do something :) ... TBD
-
-You can see the history of your executed scripts in the [Execution History](Execution History)
+Here you can see your previous executions.
 
 # FAQ
 
@@ -99,4 +84,3 @@ A list does not have any specific parameter.
 ## Execution Plan
 
 An execution plan can have parameters, these parameters are only visible to the specific user.
-
