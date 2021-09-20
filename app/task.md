@@ -1,7 +1,3 @@
-layout: page
-title: "Task"
-permalink: /app/
-
 Task can be created or edited in a task editor
 
 ## Name
