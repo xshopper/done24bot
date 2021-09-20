@@ -24,3 +24,5 @@ The parameter value to be a json object
 
 Task parameter is accessible from: app['args']
 The execution level parameters are accessible from: app['jobExec']
+
+<img width="500" alt="Screen Shot 2021-09-20 at 3 31 48 pm" src="https://user-images.githubusercontent.com/16809418/133960537-05f9de57-a6cd-45aa-bc01-07ac020b38bb.png">
