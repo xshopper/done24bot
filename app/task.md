@@ -1,3 +1,6 @@
+# Task
+
+Task is the smalleste element of the execution plan.
 Task can be created or edited in a task editor
 
 ## Name
