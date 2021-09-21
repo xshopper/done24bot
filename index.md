@@ -1,5 +1,6 @@
 # Done24bot
-It automates everything in the web including Instagram, Facebook, Webpages, Telegram, TikTok.
+Done24bot automates everything in the web including Instagram, Facebook, Webpages, Telegram, TikTok, anything Web Internal or external.
+RPA - Robotic Process Automation
 
 # Download 
 the app from [Releases](https://github.com/xshopper/done24bot/releases/latest){:target="_blank"}
