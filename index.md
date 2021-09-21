@@ -54,10 +54,23 @@ instagram - and what this task do
 
 ### Javascript code
 The code is javascript, if you return any variable it can be used in the subsequent tasks (see Return)
-You can use the app['jobExec'] , app['args'], app['puppeteer'] objects
+You can use the 
+
+app['jobExec'] - task execution details for each task, including sequence
+app['args'] - pask parameter
+app['argsExec'] - execution plan level parameters
+app['puppeteer'] objects
+await app['app'].saveData(key , value) - sava some data to the database
+var data = await app['app'].getData(key) - get data back from the database
+
+#### Special tasks
+goto -> when the Return is goto than it will jump to the sequence what have been returned in the script
 
 ### Return
 when you set the return than in the subsequent task you can refer it by app[**and here the return string**]
+
+like the return is label1 and in the script you have "return 1"
+in the subsequent tasks you can reger to this value in app['label1'] what will be 1
 
 ### Parameters
 It is having also a default parameter.
