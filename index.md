@@ -13,7 +13,7 @@ the app from [Releases](https://github.com/xshopper/done24bot/releases/latest){:
 This script will do something :) ... It goes to cnn, clicks here and there and quits :)
 You can see the history of your executed scripts in the [Execution History](#Execution-History)
 
-You can access to the executor app remotely in the [https://v3.done24bot.com](https://v3.done24bot.vom){:target="_blank"}. You still have to have an executor running in your pc/mac!
+You can access to the executor app remotely in the [https://v3.done24bot.com](https://v3.done24bot.com){:target="_blank"}. You still have to have an executor running in your pc/mac!
 
 # Support
 
