@@ -27,6 +27,10 @@ An execution plan can have parameters, these parameters are only visible to the 
 
 Here you can see your previous executions.
 
+## New script ideas
+
+[Here are some new script ideas](https://github.com/xshopper/done24bot/discussions/categories/ideas){:target="_blank"}.
+
 # FAQ
 
 * Is it working in mobile? -> Not yet, as soon as the desktop application became stable we will work on the mobile version
