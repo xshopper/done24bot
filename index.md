@@ -3,7 +3,7 @@ Done24bot automates everything in the web including Instagram, Facebook, Webpage
 RPA - Robotic Process Automation
 
 # Download 
-the app from [Releases](https://github.com/xshopper/done24bot/releases/latest){:target="_blank"}
+the app from [the latest release](https://github.com/xshopper/done24bot/releases/latest){:target="_blank"} (exe for windows, dmg for mac)
 
 # Use it!
 
