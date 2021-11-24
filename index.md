@@ -17,8 +17,7 @@ You can access to the executor app remotely in the [https://v3.done24bot.com](ht
 
 # Support
 
-If you have any question/idea visit [discussion](https://github.com/xshopper/done24bot/discussions){:target="_blank"}.
-We try our best to accomodate your request.
+If you have any question/idea visit send us an email to hello at done24bot dot com
 
 ## Execution Plan
 
