@@ -27,3 +27,6 @@ If you have any question/idea visit send us an email to hello at done24bot dot c
 * How much is this? -> Desktop version cost $20 USD per month with unlimited run
 
 * Payment not yet been implemented :) ... so enjoy!
+
+
+Developer resources: [https://done24bot.com/developer](https://done24bot.com/developer)
