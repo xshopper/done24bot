@@ -1,39 +1,23 @@
 # Done24bot
-Done24bot automates everything in the web including Instagram, Facebook, Webpages, Telegram, TikTok, anything Web Internal or external.
-RPA - Robotic Process Automation
+Done24bot automates everything in the web including Instagram, Facebook, Webpages, Telegram, TikTok, anything Web Internal or external
 
 # Download 
 the app from [the latest release](https://github.com/xshopper/done24bot/releases/latest){:target="_blank"} (exe for windows, dmg for mac)
 
 # Use it!
-
 1. Register and log in to the application.
 2. Start the application and wait a bit. At the first start it will download the chrome for execution
-3. Search for an execution plan like this: Demo.
-This script will do something :) ... It goes to cnn, clicks here and there and quits :)
-You can see the history of your executed scripts in the [Execution History](#Execution-History)
+3. Search for an execution plan like this: Instagram - likes by hashtag.
+4. Clikc on the play button and select the "demo" parameter, click on the play button next to the parameter.
 
-You can access to the executor app remotely in the [https://v3.done24bot.com](https://v3.done24bot.com){:target="_blank"}. You still have to have an executor running in your pc/mac!
+The script will ask you to log in to instagram and once you logged in it will like the latest posts under the #instagram hashtag.
+If you want to use your own hashtag just create a new parameter and use the template.
 
 # Support
 
 If you have any question/idea visit send us an email to hello at done24bot dot com
 
-## Execution Plan
-
-This is what you should run/ schedule, this is a collection of lists / Tasks. An execution plan is what does something in the web :)
-An execution plan can have parameters, these parameters are only visible to the specific user.
-
-## Execution History
-
-Here you can see your previous executions.
-
-## New script ideas
-
-[Here are some new script ideas](https://github.com/xshopper/done24bot/discussions/categories/ideas){:target="_blank"}.
-
 # FAQ
-
 * Is it working in mobile? -> Not yet, as soon as the desktop application became stable we will work on the mobile version
 * Is it free? -> Yes, you can run scripts but the script will run max 5 mins and you can't use the scheduler
 * How can I pay? -> With paypal, 
@@ -43,56 +27,3 @@ Here you can see your previous executions.
 * How much is this? -> Desktop version cost $20 USD per month with unlimited run
 
 * Payment not yet been implemented :) ... so enjoy!
-
-# For Script Developers
-
-Task, List, Execution plan been described bellow as the basis of the 
-
-## Task
-Task is the smalleste element of the execution plan.
-Task can be created or edited in a task editor
-
-### Task name
-Name is not unique in the application but people will search by name.
-All names should be lowercase as people
-Prefer to set the name like 
-instagram - and what this task do
-
-### Javascript code
-The code is javascript, if you return any variable it can be used in the subsequent tasks (see Return)
-You can use the 
-
-app['jobExec'] - task execution details for each task, including sequence
-app['args'] - pask parameter
-app['argsExec'] - execution plan level parameters
-app['puppeteer'] objects
-await app['app'].saveData(key , value) - sava some data to the database
-var data = await app['app'].getData(key) - get data back from the database
-
-#### Special tasks
-goto -> when the Return is goto than it will jump to the sequence what have been returned in the script
-
-### Return
-when you set the return than in the subsequent task you can refer it by app[**and here the return string**]
-
-like the return is label1 and in the script you have "return 1"
-in the subsequent tasks you can reger to this value in app['label1'] what will be 1
-
-### Parameters
-It is having also a default parameter.
-When you save and run a task it will pick up the default parameter.
-The parameter value to be a json object
-
-Task parameter is accessible from: app['args']
-The execution level parameters are accessible from: app['jobExec']
-
-<img width="500" alt="Screen Shot 2021-09-20 at 3 31 48 pm" src="https://user-images.githubusercontent.com/16809418/133960537-05f9de57-a6cd-45aa-bc01-07ac020b38bb.png">
-
-## List
-You can organise the Tasks into lists
-When you set the order of the [Task](Task)s than you can set which parameter you want to run this specific task in the list.
-You also can test the Lists.
-A list does not have any specific parameter.
-
-## Execution Plan
-An execution plan can have parameters, these parameters are only visible to the specific user.
