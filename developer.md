@@ -25,6 +25,8 @@ var data = await app['app'].getData(key) - get data back from the database
 
 #### Special tasks
 goto -> when the Return is goto than it will jump to the sequence what have been returned in the script
+console.log() -> will appear in the console of the application as well in https://v3.done24bot.com/console
+
 
 ### Return
 when you set the return than in the subsequent task you can refer it by app[**and here the return string**]
