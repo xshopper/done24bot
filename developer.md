@@ -1,3 +1,4 @@
+<script type="text/javascript" src="/chat.js" ></script>
 # For Script Developers
 
 Task, List, Execution plan been described bellow as the basis of the 
