@@ -15,10 +15,6 @@ the app from [the latest release](https://github.com/xshopper/done24bot/releases
 The script will ask you to log in to instagram and once you logged in it will like the latest posts under the #instagram hashtag.
 If you want to use your own hashtag just create a new parameter and use the template.
 
-# Support
-
-If you have any question/idea visit send us an email to hello at done24bot dot com
-
 # FAQ
 * Is it working in mobile? -> Not yet, as soon as the desktop application became stable we will work on the mobile version
 * Can I have a new script? yes! please email your requirement to hello@done24bot.com
