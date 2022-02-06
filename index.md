@@ -21,14 +21,9 @@ If you have any question/idea visit send us an email to hello at done24bot dot c
 
 # FAQ
 * Is it working in mobile? -> Not yet, as soon as the desktop application became stable we will work on the mobile version
-* Is it free? -> Yes, you can run scripts but the script will run max 5 mins and you can't use the scheduler
-* How can I pay? -> With paypal, 
 * Can I have a new script? yes! please email your requirement to hello@done24bot.com
-* Is it safe? -> We try to make it safe as possible, have checks in the script ... etc
-* Do you save any passwords? -> No, we do not save the passwords from the website, we can save the cookies and local storage
-* How much is this? -> Desktop version cost $20 USD per month with unlimited run
-
-* Payment not yet been implemented :) ... so enjoy!
-
+* Is it safe? -> We try to make it safe as possible, have checks in the script ... etc. Do not run and create 1000s of likes in a day, IG will ban you!
+* Do you save any passwords? -> No, we do not save the passwords from the website.
+* How much is this? -> $20 USD per month with unlimited run (it is free for now until the payment option developed)
 
 Developer resources: [https://done24bot.com/developer](https://done24bot.com/developer)
