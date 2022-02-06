@@ -1,3 +1,5 @@
+<script type="text/javascript" src="/chat.js" ></script>
+
 # Done24bot
 Done24bot automates everything in the web including Instagram, Facebook, Webpages, Telegram, TikTok, anything Web Internal or external
 
