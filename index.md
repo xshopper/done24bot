@@ -11,7 +11,8 @@ the app from [the latest release](https://github.com/xshopper/done24bot/releases
 1. Register and log in to the application.
 2. Start the application and wait a bit. At the first start it will download the chrome for execution
 3. Search for an execution plan like this: Instagram - likes by hashtag.
-4. Clikc on the play button and select the "demo" parameter, click on the play button next to the parameter.
+4. Click on the play button and select the "demo" parameter, click on the play button next to the parameter.
+If it does not work on a first place please restart the app, wait a minute and try again.
 
 The script will ask you to log in to instagram and once you logged in it will like the latest posts under the #instagram hashtag.
 If you want to use your own hashtag just create a new parameter and use the template.
