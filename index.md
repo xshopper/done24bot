@@ -22,5 +22,6 @@ If you want to use your own hashtag just create a new parameter and use the temp
 * Is it safe? -> We try to make it safe as possible, have checks in the script ... etc. Do not run and create 1000s of likes in a day, IG will ban you!
 * Do you save any passwords? -> No, we do not save the passwords from the website.
 * How much is this? -> $20 USD per month with unlimited run (it is free for now until the payment option developed)
+* Can I be on Instagram on my phone while it is running on desktop? -> Yes you can. It is like another session used by someone else.
 
 Developer resources: [https://done24bot.com/developer](https://done24bot.com/developer)
