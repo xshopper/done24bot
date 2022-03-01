@@ -44,6 +44,8 @@ The parameter value to be a json object
 Task parameter is accessible from: app['args']
 The execution level parameters are accessible from: app['argsExec']
 
+You have to create at least one public parameter to able to create parameters by other users!
+
 ## List
 You can organise the Tasks into lists
 When you set the order of the [Task](Task)s than you can set which parameter you want to run this specific task in the list.
