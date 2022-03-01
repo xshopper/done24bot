@@ -42,7 +42,7 @@ When you save and run a task it will pick up the default parameter.
 The parameter value to be a json object
 
 Task parameter is accessible from: app['args']
-The execution level parameters are accessible from: app['jobExec']
+The execution level parameters are accessible from: app['argsExec']
 
 ## List
 You can organise the Tasks into lists
