@@ -25,6 +25,14 @@ app['puppeteer'] objects
 await app['app'].saveData(key , value) - sava some data to the database
 var data = await app['app'].getData(key) - get data back from the database
 
+###Save data to the database
+await app['api'].saveData("here comes the unique identifier" , data);
+data  has to be a json!
+
+###Retrieve data from the database
+var data = await app['api'].getData("the unique identifier");
+data will be a json
+
 #### Special tasks
 goto -> when the Return is goto than it will jump to the sequence what have been returned in the script
 console.log() -> will appear in the console of the application as well in https://v3.done24bot.com/console
