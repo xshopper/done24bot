@@ -5,10 +5,10 @@
 
 | Script | Description |
 | - | - |
-| instagram - follow | Follow x number of users based on posts with specific hashtag been posted |
-| instagram - unfollow | Unfollow x number of instagram followers from the end of the folloing list |
-| instagram - view stories | Scroll through on all stories |
-| instagram - likes by hashtag | based on posts with specific hashtag will automatically like the latest posts |
-| instagram - timeline liker | likes x number of posts in your timeline |
-| telegram - auto liker | likes x number of instagram links from the end of a telegram channel (You should post @done24bot to the telegram channel) |
+| instagram - follow | Follow x number of Instagram users based on posts with specific hashtag been posted |
+| instagram - unfollow | Unfollow x number of Instagram followers from the end of the folloing list |
+| instagram - view stories | Scroll through on all stories in Instagram |
+| instagram - likes by hashtag | based on posts with specific hashtag will automatically like the latest posts in Instagram |
+| instagram - timeline liker | likes x number of posts in your Instagram timeline |
+| telegram - auto liker | likes x number of Instagram links from the end of a Telegram channel (You should post @done24bot to the telegram channel) |
 | force re-download chromium | admin execution plan |
