@@ -3,7 +3,7 @@
 
 ## Execution plans
 
-| Execution plan name | Description |
+| Script | Description |
 | - | - |
 | instagram - follow | Follow #nr of users based on posts with specific hashtag been posted |
 | instagram - unfollow | Unfollow #nr of instagram followers from the end of the folloing list |
