@@ -10,5 +10,5 @@
 | instagram - view stories | Scroll through on all stories |
 | instagram - likes by hashtag | based on posts with specific hashtag will automatically like the latest posts |
 | instagram - timeline liker | likes #nr of posts in your timeline |
-| telegram - auto liker | likes #nr of instagram links from the end of a telegram channel (You have to post @done24bot to the telegram channel) |
+| telegram - auto liker | likes #nr of instagram links from the end of a telegram channel (You should post @done24bot to the telegram channel) |
 | force re-download chromium | admin execution plan |
