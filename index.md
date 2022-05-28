@@ -14,7 +14,7 @@ the app from [the latest release](https://github.com/xshopper/done24bot/releases
 # How to use it
 1. Register and log in to the application.
 2. Start the application and wait a bit. At the first start it will download the chrome for execution
-3. Search for an execution plan like this: Instagram - likes by hashtag.
+3. Search for a script like this: Instagram - likes by hashtag.
 4. Click on the play button and select the "demo" parameter, click on the play button next to the parameter.
 If it does not work on a first place please restart the app, wait a minute and try again.
 
