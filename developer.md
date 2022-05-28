@@ -60,5 +60,5 @@ When you set the order of the [Task](Task)s than you can set which parameter you
 You also can test the Lists.
 A list does not have any specific parameter.
 
-## Execution Plan
+## Script (Execution Plan)
 An execution plan can have parameters, these parameters are only visible to the specific user.
