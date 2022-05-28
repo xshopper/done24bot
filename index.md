@@ -17,7 +17,7 @@ If it does not work on a first place please restart the app, wait a minute and t
 The script will ask you to log in to instagram and once you logged in it will like the latest posts under the #instagram hashtag.
 If you want to use your own hashtag just create a new parameter and use the template.
 
-# [Available scripts](https://done24bot.com/developer)
+# [Available scripts](https://done24bot.com/scripts)
 
 # FAQ
 * Is it working in mobile? -> Not yet, as soon as the desktop application became stable we will work on the mobile version
