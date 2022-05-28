@@ -1,13 +1,15 @@
 <script type="text/javascript" src="/chat.js" ></script>
 <script type="text/javascript" src="/google.js" ></script>
 
-# Done24bot
+Save time - Increase Followers - Schedule Scripts - Leave the manual work behind!
+
+# Your Personal Bot
 Done24bot automates everything in the web including Instagram, Facebook, Webpages, Telegram, TikTok, anything Web Internal or external
 
 # Download 
 the app from [the latest release](https://github.com/xshopper/done24bot/releases/latest){:target="_blank"} (exe for windows, dmg for mac)
 
-# Use it!
+# How to use it
 1. Register and log in to the application.
 2. Start the application and wait a bit. At the first start it will download the chrome for execution
 3. Search for an execution plan like this: Instagram - likes by hashtag.
