@@ -11,5 +11,6 @@
 | instagram - likes by hashtag | Based on posts with specific hashtag, it will **automatically like** the latest posts on Instagram |
 | instagram - timeline liker| **Like** a specific number of posts in your **Instagram timeline** |
 | telegram - auto liker | Likes specific number of Instagram links from the end of a specific Telegram channel. (You should post @done24bot to the telegram channel) |
+| linkedin - timeline liker| **Like** a specific number of posts in your **LinkedIn timeline** |
 | amazon.sellercentral.com.au - request feedback | Request feedback on the orders |
 | force re-download chromium | Admin script |
