@@ -13,4 +13,5 @@
 | telegram - auto liker | Likes specific number of Instagram links from the end of a specific Telegram channel. (You should post @done24bot to the telegram channel) |
 | linkedin - timeline liker| **Like** a specific number of posts in your **LinkedIn timeline** |
 | amazon.sellercentral.com.au - request feedback | Request feedback on the orders |
-| force re-download chromium | Admin script |
+
+Full list of scripts available when you log in into the application!
