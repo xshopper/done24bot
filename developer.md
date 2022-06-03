@@ -18,12 +18,12 @@ instagram - and what this task do
 The code is javascript, if you return any variable it can be used in the subsequent tasks (see Return)
 You can use the 
 
-app['jobExec'] - task execution details for each task, including sequence
-app['args'] - pask parameter
-app['argsExec'] - execution plan level parameters
-app['puppeteer'] objects
-await app['app'].saveData(key , value) - sava some data to the database
-var data = await app['app'].getData(key) - get data back from the database
+* app['jobExec'] - task execution details for each task, including sequence
+* app['args'] - pask parameter
+* app['argsExec'] - execution plan level parameters
+* app['puppeteer'] objects
+* await app['app'].saveData(key , value) - sava some data to the database
+* var data = await app['app'].getData(key) - get data back from the database
 
 ### Save data to the database
 await app['api'].saveData("here comes the unique identifier" , data);
