@@ -43,12 +43,10 @@ Yes you can, click on the calendar menu. FYI: the application needs to run to ex
 
 Email: [hello@done24bot.com](mailto:hello@done24bot.com)
 
-Discord : [https://discord.gg/yZG9G6mYgR](https://discord.gg/yZG9G6mYgR)
-
 # Developer resources
 
 [https://done24bot.com/developer](https://done24bot.com/developer)
 
 # Subscribe to our mailing list
 
-[Subscribe here](http://eepurl.com/gW_JCf)
+[Subscribe here](http://eepurl.com/gW_JCf){:target="_blank"}
