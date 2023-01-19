@@ -25,7 +25,7 @@ If you want to use your own hashtag just create a new parameter and use the temp
 
 # FAQ
 ## Is it working in mobile?
-You can drive the application from your mobile on this website: [https://v3.done24bot.com](https://v3.done24bot.com) but you need to install the application somewhere. If you want us to run the application please email the support.
+You can drive the application from your mobile on this website: [https://v3.done24bot.com](https://v3.done24bot.com){:target="_blank"} but you need to install the application somewhere. If you want us to run the application please email the support.
 ## Can I have a new script? 
 Yes! Please email your requirement to support.
 ## Is it safe?
