@@ -22,8 +22,8 @@ You can use the
 * app['args'] - pask parameter
 * app['argsExec'] - execution plan level parameters
 * app['puppeteer'] objects
-* await app['app'].saveData(key , value) - sava some data to the database
-* var data = await app['app'].getData(key) - get data back from the database
+* await app['api'].saveData(key , value) - sava some data to the database
+* var data = await app['api'].getData(key) - get data back from the database
 
 ### Save data to the database
 await app['api'].saveData("here comes the unique identifier" , data);
