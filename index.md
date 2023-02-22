@@ -9,7 +9,7 @@ Save time - Increase Followers - Schedule Scripts - Leave the manual work behind
 Done24bot automates everything in the web including Instagram, Facebook, Webpages, Telegram, TikTok, anything Web Internal or external.
 
 # Download 
-the app from here: [Releases](https://github.com/xshopper/done24bot/releases/latest){:target="_blank"} (Use exe for windows, dmg for Mac)
+the app from here: [Latest Release](https://github.com/xshopper/done24bot/releases/latest){:target="_blank"} (Install exe for windows, dmg for Mac)
 
 # How to use it
 1. Register and log in to the application.
