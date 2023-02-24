@@ -5,7 +5,7 @@
 
 ## Action needs to be done
 
-1) Please download and install the latest sit product (sit meand system integration test) https://github.com/xshopper/done24bot/releases
+1) Please download and install the latest sit product (sit meand system integration test) [https://github.com/xshopper/done24bot/releases](https://github.com/xshopper/done24bot/releases)
 
 2) Register and log in to the app
 
