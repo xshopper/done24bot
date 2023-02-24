@@ -47,6 +47,12 @@ Email: [hello@done24bot.com](mailto:hello@done24bot.com)
 
 [https://done24bot.com/developer](https://done24bot.com/developer)
 
+# Tester resources
+
+[https://done24bot.com/tester](https://done24bot.com/tester)
+
+
+
 # Subscribe to our mailing list
 
 [Subscribe here](http://eepurl.com/gW_JCf){:target="_blank"}
