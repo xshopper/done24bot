@@ -41,7 +41,7 @@ Yes you can. It is like another session used by someone else.
 ## Can I schedule it?
 Yes you can.
 
-# Support
+# Support, Professional services
 Email: [hello@done24bot.com](mailto:hello@done24bot.com)
 
 # Subscribe to our mailing list
