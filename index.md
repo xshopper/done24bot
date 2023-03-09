@@ -26,16 +26,16 @@ If you want to use your own hashtag just create a new parameter and use the temp
 
 # FAQ
 ## Is it working in mobile?
-We are working on it!!!
+Not yet but We are working on it!!! We will release it soon!
 ## Can I have a new script? 
-Yes! Please email your requirement to support at [hello@done24bot.com](mailto:hello@done24bot.com).
+Absolultely! Please email your requirement to [hello@done24bot.com](mailto:hello@done24bot.com).
 ## Is it safe, is Instagram will ban me?
 We try to make it safe as possible, have checks in the script ... etc. Do not run and create 1000s of likes in a day, IG will ban you!
-Be reasonable ans pread out your activities in time.
+Be reasonable and spread out your activities in time. Increase your activity slowly.
 ## Do you save any passwords?
-No, we do not save the passwords/username from the website.
+No, we do not save the passwords/username from the website. We only save the cookies.
 ## How much does it cost?
-Basic features are **free** however full subscription cost $20 USD.
+Basic features are **free**, full subscription cost $20 USD per month.
 ## Can I be on Instagram on my phone while it is running on desktop? 
 Yes you can. It is like another session used by someone else.
 ## Can I schedule it?
