@@ -1,6 +1,3 @@
-<head>
-    <link rel="shortcut icon" type="image/png" href="favicon.png">
-  </head>
 <script type="text/javascript" src="/chat.js" ></script>
 <script type="text/javascript" src="/google.js" ></script>
 <script type="text/javascript" id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/2aec843456fe86e83457a2dfd/3b500ed6ea17cffa74b3190e4.js");</script>
