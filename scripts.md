@@ -9,7 +9,7 @@
 | instagram - unfollow | **Unfollow** a specific number of Instagram followers from the end of the following list |
 | instagram - view stories | Scroll through all **Instagram stories** |
 | instagram - likes by hashtag | Based on posts with specific hashtag, it will **automatically like** the latest posts on Instagram |
-| [instagram - timeline liker] (https://done24bot.com/documentation/24f6c9e7-d489-46bd-a76e-e179ed4e40d6.md) | **Like** a specific number of posts in your **Instagram timeline** |
+| [instagram - timeline liker] (https://done24bot.com/documentation/24f6c9e7-d489-46bd-a76e-e179ed4e40d6) | **Like** a specific number of posts in your **Instagram timeline** |
 | linkedin - timeline liker| **Like** a specific number of posts in your **LinkedIn timeline** |
 | telegram - auto liker | Likes specific number of Instagram links from the end of a specific Telegram channel. (You should post @done24bot to the telegram channel) |
 
