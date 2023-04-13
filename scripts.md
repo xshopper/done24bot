@@ -11,7 +11,7 @@
 | instagram - likes by hashtag | Based on posts with specific hashtag, it will **automatically like** the latest posts on Instagram |
 | [instagram - timeline liker] (https://done24bot.com/documentation/24f6c9e7-d489-46bd-a76e-e179ed4e40d6) | **Like** a specific number of posts in your **Instagram timeline** |
 | linkedin - timeline liker| **Like** a specific number of posts in your **LinkedIn timeline** |
-| [telegram - auto liker] (https://done24bot/documentation/4c07e20b-80c1-4198-9e11-f1e955702f1a) | Likes specific number of Instagram links from the end of a specific Telegram channel. (You should post @done24bot to the telegram channel) |
+| [telegram - auto liker] (https://done24bot.com/documentation/4c07e20b-80c1-4198-9e11-f1e955702f1a) | Likes specific number of Instagram links from the end of a specific Telegram channel. (You should post @done24bot to the telegram channel) |
 
 ## Under development
 
