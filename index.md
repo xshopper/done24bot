@@ -1,3 +1,5 @@
+We Love Automation!
+
 Save time - Increase Followers - Schedule Scripts - Leave the manual work behind!
 
 # Your Personal Bot
