@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/xshopper/done24bot/issues"
   },
+  "dependencies": {
+    "redis": "^4.6.13"
+  },
   "homepage": "https://github.com/xshopper/done24bot#readme"
 }
