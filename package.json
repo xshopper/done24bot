@@ -1,22 +1,22 @@
 {
-  "name": "done24bot",
-  "version": "1.0.0",
-  "description": "done24bot.com",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/xshopper/done24bot.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/xshopper/done24bot/issues"
-  },
-  "dependencies": {
-    "redis": "^4.6.13"
-  },
-  "homepage": "https://github.com/xshopper/done24bot#readme"
+	"name": "done24bot",
+	"version": "1.0.0",
+	"description": "done24bot.com",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/xshopper/done24bot.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/xshopper/done24bot/issues"
+	},
+	"dependencies": {
+		"redis": "^4.6.13"
+	},
+	"homepage": "https://github.com/xshopper/done24bot#readme"
 }
